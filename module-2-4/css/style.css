@@ -1,0 +1,39 @@
+img {
+    max-width: 30%;
+}
+
+h1 {
+    font-size: 14pt;
+}
+
+p {
+    font-size: 9pt;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-container + div h3 {
+    font-size: 16pt;
+}
+
+.flex-container + div p {
+    font-size: 11pt;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.gap1 {
+    gap:1rem;
+ }
+
+
+
+
+
+
+
