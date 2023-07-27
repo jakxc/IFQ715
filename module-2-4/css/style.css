@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 img {
     max-width: 30%;
 }
@@ -10,6 +14,11 @@ p {
     font-size: 9pt;
 }
 
+section {
+    margin-top: 1rem;
+ }
+
+ /* Utility classes */
 .flex-container {
     display: flex;
     flex-direction: row;
@@ -23,6 +32,10 @@ p {
     font-size: 11pt;
 }
 
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
 .align-items-center {
     align-items: center;
 }
@@ -30,6 +43,29 @@ p {
 .gap1 {
     gap:1rem;
  }
+
+ .width-100 {
+    width: 100%;
+ }
+ 
+ .center-text {
+    text-align: center;
+ }
+
+ .width-25 {
+    width: 25%;
+ }
+
+ /* Featured articles */
+ .featured-article {
+    padding: 0.5rem;
+ }
+
+ .featured-article__content {
+    background-color: burlywood;
+    padding: 0.5rem;
+ }
+
 
 
 
