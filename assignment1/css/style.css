@@ -37,7 +37,39 @@ img {
     max-block-size: 100%;
 }
 
-.product-image {
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+    /* Firefox */
+}
+
+.card-img {
     max-height: 300px;
     max-width: 200px;
 }
+
+.product-img {
+    max-height: 400px;
+    max-width: 300px;
+}
+
+.thumbnail-img {
+    max-width: 70px;
+}
+
+.currency-wrap{
+    position: relative;
+}
+
+.currency-code{
+    position: absolute;
+    left: 8px;
+    top: 8px;
+}
+
+ 
