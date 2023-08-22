@@ -1,4 +1,16 @@
 @charset "utf-8";
+
+:root {
+    --main-bg-color: #F8EDE3;
+    --primary-color: #BDD2B6;
+    --secondary-color: #798777;
+    --nav-color: #272829;
+
+    --primary-font: 'Maven Pro', sans-serif;
+}
+  
+
+
 /***
     The new CSS reset - version 1.8.5 (last updated 14.6.2023)
     GitHub page: https://github.com/elad2412/the-new-css-reset
@@ -48,11 +60,43 @@ input[type=number] {
     /* Firefox */
 }
 
+body {
+    background-color: var(--main-bg-color);
+    font-family: var(--primary-font);
+}
+
+/* Utility Classes */
+.primary-color {
+    color: var(--primary-color);
+}
+
+.secondary-color {
+    color: var(--secondary-color);
+}
+
+.primary-background {
+    background-color: var(--primary-color);
+}
+
+.secondary-background {
+    background-color: var(--secondary-color);
+}
+
+.nav-background {
+    background-color: var(--nav-color);
+}
+
+/* Landing Page */
 .card-img {
     max-height: 300px;
     max-width: 200px;
 }
 
+.category-item {
+    border: 1px solid #000000
+}
+
+/* Product Page */
 .product-img {
     max-height: 400px;
     max-width: 300px;
@@ -62,6 +106,7 @@ input[type=number] {
     max-width: 70px;
 }
 
+/* Add Product Page */
 .currency-wrap{
     position: relative;
 }
@@ -70,6 +115,12 @@ input[type=number] {
     position: absolute;
     left: 8px;
     top: 8px;
+}
+
+.image-box {
+    min-height: 100px;
+    min-width: 100px;
+    border: 1px solid #000000; 
 }
 
  
