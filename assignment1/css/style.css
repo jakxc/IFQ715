@@ -65,6 +65,10 @@ body {
     font-family: var(--primary-font);
 }
 
+a {
+    text-decoration: none;
+}
+
 /* Utility Classes */
 .primary-color {
     color: var(--primary-color);
