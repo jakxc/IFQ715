@@ -1,4 +1,4 @@
-const Book = ({key, title, author, likes, dislikes, setLikes, setDislikes}) => {
+const Book = ({title, author, likes, dislikes, setLikes, setDislikes}) => {
     return (
         <>
             <div>
@@ -6,8 +6,8 @@ const Book = ({key, title, author, likes, dislikes, setLikes, setDislikes}) => {
                 <h5>{author}</h5>
                 <p>Likes: {likes}</p>
                 <p>Dislikes: {dislikes}</p>
-                <button onClick={setLikes(key)}>Like</button>
-                <button onClick={setDislikes(key)}>Dislike</button>
+                <button onClick={setLikes}>Like</button>
+                <button onClick={setDislikes}>Dislike</button>
             </div>
         </>
     )

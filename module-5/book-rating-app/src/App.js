@@ -30,38 +30,32 @@ function App() {
 
   const incrementLike = (id) => {
     setBooksData((prev) => {
-      for (const book of prev) {
-        if (book.id === id) {
-          book.like ? book.like++ : book.like = 1;
-        }
-      }
-
-      return prev;
+      return prev.map(book => book.id === id ? {...book, 
+        likes: book.likes 
+                ? book.likes++
+                : 1 } : book)
     })
   }
 
   const incrementDislike = (id) => {
     setBooksData((prev) => {
-      const newBooks = prev;
-      for (const book of newBooks) {
-        if (book.id === id) {
-          book.dislike ? book.dislike++ : book.dislike = 1;
-        }
-      }
-
-      return newBooks;
+      return prev.map(book => book.id === id ? {...book, 
+        dislikes: book.dislikes 
+                ? book.dislikes++
+                : 1 } : book)
     })
   }
 
   const bookElements = booksData.map(book => {
     return <Book 
       key={book.id}
+      id={book.id}
       title={book.title} 
       author={book.author}
       likes={book.likes || 0}
       dislikes={book.dislikes || 0}
-      setLikes={(id) => incrementLike}
-      setDislikes={(id) => incrementDislike}
+      setLikes={() => incrementLike(book.id)}
+      setDislikes={() => incrementDislike(book.id)}
     />
   })
 
