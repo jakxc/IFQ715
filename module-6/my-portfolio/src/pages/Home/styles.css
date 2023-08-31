@@ -1,0 +1,7 @@
+@import "../../App.css";
+
+.profile-frame {
+    border: 1px solid var(--primary-color);
+    height: 300px;
+    width: 300px;
+}

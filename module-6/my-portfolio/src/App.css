@@ -1,0 +1,36 @@
+
+:root {
+  --background-color: rgb(63, 63, 63);
+  --primary-color: rgb(224, 136, 92);
+  --primary-color-lite: rgba(224, 136, 92, 0.726);
+  --light-text-color: rgb(228, 228, 228);
+  --dark-text-color: rgb(27, 27, 27);
+  
+  --primary-font: 'Maven Pro', sans-serif;
+}
+
+body {
+  color: var(--light-text-color);
+  background-color: var(--background-color);
+  font-family: var(--primary-font);
+}
+
+button:hover {
+  background-color: var(--primary-color-lite) !important;
+}
+
+.primary-color {
+  color: var(--primary-color);
+}
+
+.text-light {
+  color: var(--light-text-color);
+}
+
+.text-dark {
+  color: var(--dark-text-color);
+}
+
+.primary-background {
+  background-color: var(--primary-color);
+}
