@@ -1,7 +1,13 @@
 @import "../../App.css";
 
 .profile-frame {
-    border: 1px solid var(--primary-color);
-    height: 300px;
+    height: 400px;
     width: 300px;
+    border: 1px solid var(--primary-color);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.profile-img {
+    width: 100%;
 }
