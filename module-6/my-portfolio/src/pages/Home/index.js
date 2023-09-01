@@ -19,7 +19,7 @@ const Home = () => {
                             }}
                         /></span> with a keen interest in web development and UX Design.
                     </h2>
-                    <button type="button" class="primary-background text-dark | btn fw-bold">Contact Me</button>
+                    <button type="button" className="primary-background text-dark | btn fw-bold">Contact Me</button>
                 </Col>
                 <Col sm={12} md={4}>
                     <div className="profile-frame | mx-auto">
