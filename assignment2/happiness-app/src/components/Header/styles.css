@@ -1,0 +1,14 @@
+@import "../../App.css";
+
+nav a {
+    color: var(--primary-color);
+}
+
+nav a:hover {
+    color: var(--text-color-lite);
+}
+
+.nav_toggle {
+    border: none;
+    color: var(--text-color-lite) !important;
+}
