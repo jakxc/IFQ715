@@ -1,3 +1,7 @@
+@import "../../App.css";
+
 .world-icon {
-    max-width: 50%;
+    width: 300px;
+    max-width: 90%;
+    animation: updown 3s linear infinite;
 }

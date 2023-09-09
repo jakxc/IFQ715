@@ -19,8 +19,62 @@ a {
   text-decoration: none;
 }
 
-button:hover {
-  background-color: var(--primary-color-lite) !important;
+a:hover {
+  color: var(--primary-color-lite);
+}
+
+input {
+    font-size: 16px;
+    line-height: 28px;
+    padding: 8px 16px;
+    width: 100%;
+    min-height: 44px;
+    border: 1px solid var(--text-color-dark);
+    border-radius: 4px;
+    outline-color: var(--primary-color);
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(60, 66, 87, 0.16) 0px 0px 0px 1px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
+                rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+}
+
+input:focus {
+  border: 2px solid var(--primary-color);
+}
+
+/* CSS */
+button {
+  letter-spacing: 1px;
+  padding: 10px 20px 10px;
+  outline: 0;
+  border: 1px solid var(--primary-color);
+  cursor: pointer;
+  position: relative;
+  color: var(--text-color-dark);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+button:after {
+  content: "";
+  background-color: var(--primary-color-lite);
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  height: 100%;
+  top: 7px;
+  left: 7px;
+  transition: 0.2s;
+}
+
+button:hover:after {
+  top: 0px;
+  left: 0px;
 }
 
 .primary-color {
@@ -37,4 +91,20 @@ button:hover {
 
 .primary-background {
   background-color: var(--primary-color);
+}
+
+.anim-hover {
+  animation: updown 3s linear infinite;
+}
+
+@keyframes updown {
+  0% {
+      transform: translateY(-20px);
+  }
+  50% {
+      transform: translateY(20px);
+  }
+  100% {
+      transform: translateY(-20px);
+  }
 }

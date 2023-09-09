@@ -17,7 +17,8 @@ const HighlightLink = (props) => {
 const Header = () => {
     return (
         <header>
-            <Container fluid className="d-flex justify-content-between p-3">
+            <Container fluid="sm" className="d-flex justify-content-between align-items-center p-4">
+                <h3>World Happiness Rankings</h3>
                 <Navbar expand="md" className="nav | m-0 p-0">
                     {/* <Navbar.Brand href="#" className="primary-color | fw-bold">Jakxc</Navbar.Brand> */}
                     <Navbar.Toggle aria-controls="navbarSupportedContent" className="nav_toggle">
@@ -27,7 +28,7 @@ const Header = () => {
                             />
                         </span>
                     </Navbar.Toggle>
-                    <Navbar.Collapse id="navbarSupportedContent" className="pt-2">
+                    <Navbar.Collapse id="navbarSupportedContent">
                         <Nav className="gap-3 me-auto">
                             <HighlightLink to="/">
                                 Home
