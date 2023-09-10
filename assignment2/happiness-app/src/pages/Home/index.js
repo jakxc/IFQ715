@@ -1,6 +1,7 @@
-import './styles.css'
-import { Container, Col, Row } from 'react-bootstrap'
-import worldImg from '../../assets/lowpolyworld.png'
+import { Container, Col, Row } from 'react-bootstrap';
+import { NavLink } from "react-router-dom";
+import earthImg from '../../assets/low-poly-earth.png';
+import './styles.css';
 
 const Home = () => {
     return (
@@ -17,13 +18,13 @@ const Home = () => {
                         The data used to rank countries of each of these themes are gathered from various polls and surveys such as the Gallup World Poll and World Values Survey. 
                     </p>
                     <div className='d-flex gap-4'>
-                        <button className='fw-bold'>Country Rankings</button>
+                        <NavLink to="/countryRankings"><button className='fw-bold'>Country Rankings</button></NavLink>
                         <button className='fw-bold'>Happiness Factors</button>
                     </div>
                 </Col>
                 <Col sm={12} md={6} className='my-auto'>
-                    <div className='w-100 d-flex justify-content-center'>
-                        <img src={worldImg} alt='https://www.pngitem.com/middle/obRhbm_low-poly-earth-png-transparent-png/' className='world-icon anim-hover'/>
+                    <div className='d-flex justify-content-center'>
+                        <img src={earthImg} alt='Earth' className='world-img anim-hover'/>
                     </div>
                 </Col>
             </Row>

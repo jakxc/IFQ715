@@ -1,15 +1,14 @@
 import { Container, Col, Row } from "react-bootstrap";
-import islandImg from "../../assets/lowpolyisland.png"
+import bastionImg from "../../assets/low-poly-bastion.png"
 
 const Register = () => {
     return (
         <Container fluid='sm'>
             <Row>
-                <Col sm={12} md={8} className="my-auto">
-                    <img src= {islandImg}
-            className="img-fluid | anim-hover" alt="https://pngtree.com/freepng/lowpoly-style-low-polygon-style-lowpoly-forest-green-lowpoly-forest_3924447.html from png image from pngtree.com"></img>
-                </Col>
                 <Col sm={12} md={4} className="my-auto">
+                    <img className="bastion-img anim-hover" src= {bastionImg} alt="Robot"></img>
+                </Col>
+                <Col sm={12} md={8} className="my-auto p-4">
                     <h3 className="primary-color">Create your account</h3>
                     <form>
                         <div className="mb-4">
