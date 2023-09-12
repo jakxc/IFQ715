@@ -1,14 +1,16 @@
-import { Col, Row } from "react-bootstrap"
+import { Col, Row } from "react-bootstrap";
+import "./styles.css";
 
-const CustomRow = (data) => {
+const CustomRow = ({ data }) => {
+    const colElements = data.map((el, i, a) => {
+        console.log(a.length)
+        return <Col md={Math.floor(12/a.length)} className="">{el}</Col>
+    })
+
+    console.log(data);
     return (
-        <Row>
-            <Col md={2}>Rank</Col>
-            <Col md={2}>Country</Col>
-            <Col md={2}>Score</Col>
-            <Col md={2}>Economy</Col>
-            <Col md={2}>Family</Col>
-            <Col md={2}>Health</Col>
+        <Row className="background-dark | p-3 gap-3">
+           {colElements}
         </Row>
     )
 }

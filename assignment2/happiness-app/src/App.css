@@ -1,17 +1,16 @@
 
 :root {
-  --background-color: rgb(63, 63, 63);
-  --primary-color: rgb(224, 136, 92);
-  --primary-color-lite: rgba(224, 136, 92, 0.726);
-  --text-color-lite: rgb(228, 228, 228);
-  --text-color-dark: rgb(27, 27, 27);
+  --background-color: 0, 0%, 25%;
+  --primary-color: 20, 68%, 62%;
+  --text-color-lite: 0, 0%, 89%;
+  --text-color-dark: 0, 0%, 11%;
   
   --primary-font: 'Maven Pro', sans-serif;
 }
 
 body {
-  color: var(--text-color-lite);
-  background-color: var(--background-color);
+  color: hsl(var(--text-color-lite));
+  background-color: hsl(var(--background-color));
   font-family: var(--primary-font);
 }
 
@@ -20,7 +19,7 @@ a {
 }
 
 a:hover {
-  color: var(--primary-color-lite);
+  color: hsla(var(--primary-color), 0.726) !important;
 }
 
 input {
@@ -29,9 +28,10 @@ input {
     padding: 8px 16px;
     width: 100%;
     min-height: 44px;
-    border: 1px solid var(--text-color-dark);
+    max-width: 500px;
+    border: 1px solid hsl(var(--text-color-dark));
     border-radius: 4px;
-    outline-color: var(--primary-color);
+    outline-color: hsl(var(--primary-color));
     background-color: rgb(255, 255, 255);
     box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
                 rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
@@ -43,7 +43,7 @@ input {
 }
 
 input:focus {
-  border: 2px solid var(--primary-color);
+  border: 2px solid hsl(var(--primary-color));
 }
 
 /* CSS */
@@ -51,10 +51,10 @@ button {
   letter-spacing: 1px;
   padding: 10px 20px 10px;
   outline: 0;
-  border: 1px solid var(--primary-color);
+  border: 1px solid hsl(var(--primary-color));
   cursor: pointer;
   position: relative;
-  color: var(--text-color-dark);
+  color: hsl(var(--text-color-dark));
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
@@ -62,7 +62,7 @@ button {
 
 button:after {
   content: "";
-  background-color: var(--primary-color-lite);
+  background-color: hsl(var(--primary-color), 0.726);
   width: 100%;
   z-index: -1;
   position: absolute;
@@ -78,19 +78,19 @@ button:hover:after {
 }
 
 .primary-color {
-  color: var(--primary-color);
+  color: hsl(var(--primary-color));
 }
 
 .text-light {
-  color: var(--text-color-lite);
+  color: hsl(var(--text-color-lite));
 }
 
 .text-dark {
-  color: var(--text-color-dark);
+  color: hsl(var(--text-color-dark));
 }
 
 .primary-background {
-  background-color: var(--primary-color);
+  background-color: hsl(var(--primary-color));
 }
 
 .anim-hover {

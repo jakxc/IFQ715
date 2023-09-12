@@ -19,7 +19,7 @@ const Home = () => {
                     </p>
                     <div className='d-flex gap-4'>
                         <NavLink to="/countryRankings"><button className='fw-bold'>Country Rankings</button></NavLink>
-                        <button className='fw-bold'>Happiness Factors</button>
+                        <NavLink to="/countryRankings"><button className='fw-bold'>Happiness Factors</button></NavLink>
                     </div>
                 </Col>
                 <Col sm={12} md={6} className='my-auto'>

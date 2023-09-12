@@ -17,7 +17,7 @@ const HighlightLink = (props) => {
 const Header = () => {
     return (
         <header>
-            <Container fluid="sm" className="d-flex justify-content-between align-items-center p-4">
+            <Container fluid className="d-flex justify-content-between align-items-center p-4">
                 <HighlightLink to="/"><h4 className="fw-bold">World Happiness Rankings</h4></HighlightLink>
                 <Navbar expand="md" className="nav">
                     <Navbar.Toggle aria-controls="navbarSupportedContent" className="nav_toggle">

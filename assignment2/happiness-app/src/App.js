@@ -8,7 +8,6 @@ import CountryRankings from "./pages/CountryRankings";
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 
-
 function App() {
   return (
     <Router>

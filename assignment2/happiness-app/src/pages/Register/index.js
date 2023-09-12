@@ -10,18 +10,18 @@ const Register = () => {
                 </Col>
                 <Col sm={12} md={8} className="my-auto p-4">
                     <h3 className="primary-color">Create your account</h3>
-                    <form>
-                        <div className="mb-4">
+                    <form className="d-flex flex-column gap-3">
+                        <div className="d-flex flex-column">
                             <label className="form-label" for="emailInput">Email address</label>
                             <input type="email" id="emailInput" className=""
                             placeholder="Enter email address" />
                         </div>
-                        <div className="mb-3">
+                        <div className="d-flex flex-column">
                             <label className="form-label" for="passwordInput">Password</label>
                             <input type="password" id="passwordInput" className=""
                             placeholder="Enter password" />
                         </div>
-                        <div className="text-center text-lg-start mt-4 pt-2">
+                        <div className="text-center text-lg-start pt-2">
                             <button className="fw-bold">Create your account</button>
                             <p className="small fw-bold mt-2 pt-1 mb-0">Already have an account? <a href="#!"
                                 className="primary-color">Login here</a></p>

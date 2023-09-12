@@ -1,11 +1,11 @@
 @import "../../App.css";
 
 nav a {
-    color: var(--primary-color);
+    color: hsl(var(--primary-color));
 }
 
 nav a:hover {
-    color: var(--text-color-lite);
+    color: hsl(var(--primary-color), 0.726) !important;
 }
 
 .nav_toggle {
