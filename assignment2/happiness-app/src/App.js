@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer"
@@ -9,14 +10,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem("token") ? true : false
+  );
+
   return (
     <Router>
       <div className="App">
-        <Header />
+        <Header isLoggedIn={isLoggedIn} onLoginChanged={setIsLoggedIn}/>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home isLoggedIn={isLoggedIn}/>} />
           <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login onLoginChanged={setIsLoggedIn}/>} />
           <Route path="/countryRankings" element={<CountryRankings />} />
         </Routes>
         <Footer />

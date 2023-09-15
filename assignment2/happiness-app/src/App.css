@@ -4,6 +4,8 @@
   --primary-color: 20, 68%, 62%;
   --text-color-lite: 0, 0%, 89%;
   --text-color-dark: 0, 0%, 11%;
+  --success-color: 125, 57%, 60%;
+  --error-color: 0, 68%, 56%;
   
   --primary-font: 'Maven Pro', sans-serif;
 }
@@ -31,7 +33,7 @@ input {
     max-width: 500px;
     border: 1px solid hsl(var(--text-color-dark));
     border-radius: 4px;
-    outline-color: hsl(var(--primary-color));
+    color: hsl(var(--text-color-dark));
     background-color: rgb(255, 255, 255);
     box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
                 rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
@@ -44,6 +46,18 @@ input {
 
 input:focus {
   border: 2px solid hsl(var(--primary-color));
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: hsl(var(--text-color-dark), 0.3)
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: hsl(var(--text-color-dark), 0.3)
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: hsl(var(--text-color-dark), 0.3)
 }
 
 /* CSS */

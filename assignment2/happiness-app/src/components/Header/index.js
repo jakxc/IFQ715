@@ -14,7 +14,11 @@ const HighlightLink = (props) => {
             />;
 }
 
-const Header = () => {
+const Header = ( { isLoggedIn, onLoginChanged } ) => {
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        onLoginChanged(false);
+    }
     return (
         <header>
             <Container fluid className="d-flex justify-content-between align-items-center p-4">
@@ -29,12 +33,15 @@ const Header = () => {
                     </Navbar.Toggle>
                     <Navbar.Collapse id="navbarSupportedContent">
                         <Nav className="gap-4">
-                            <HighlightLink to="/login">
+                            {isLoggedIn && <HighlightLink onClick={handleLogout}>
+                                Logout
+                            </HighlightLink>}
+                            {!isLoggedIn && <HighlightLink to="/login">
                                 Login
-                            </HighlightLink>
-                            <HighlightLink to="/register">
+                            </HighlightLink>}
+                            {!isLoggedIn && <HighlightLink to="/register">
                                 Register
-                            </HighlightLink>
+                            </HighlightLink>}
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>

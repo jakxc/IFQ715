@@ -1,9 +1,9 @@
 import { Container, Col, Row } from 'react-bootstrap';
-import { NavLink } from "react-router-dom";
+import { NavLink as Link } from "react-router-dom";
 import earthImg from '../../assets/low-poly-earth.png';
 import './styles.css';
 
-const Home = () => {
+const Home = ({ isLoggedIn }) => {
     return (
         <Container fluid="md" className='p-5'>
             <Row>
@@ -17,10 +17,10 @@ const Home = () => {
                         each report has contributing authors that focus on a particular themes (economy, family, health, freedom, generosity, trust). 
                         The data used to rank countries of each of these themes are gathered from various polls and surveys such as the Gallup World Poll and World Values Survey. 
                     </p>
-                    <div className='d-flex gap-4'>
-                        <NavLink to="/countryRankings"><button className='fw-bold'>Country Rankings</button></NavLink>
-                        <NavLink to="/countryRankings"><button className='fw-bold'>Happiness Factors</button></NavLink>
-                    </div>
+                    { isLoggedIn ? <div className='d-flex gap-4'>
+                        <Link to="/countryRankings"><button className='fw-bold'>Country Rankings</button></Link>
+                        <Link to="/countryRankings"><button className='fw-bold'>Happiness Factors</button></Link>
+                    </div> : <div className='primary-color | fw-bold'>Log in to view rankings.</div>}
                 </Col>
                 <Col sm={12} md={6} className='my-auto'>
                     <div className='d-flex justify-content-center'>
