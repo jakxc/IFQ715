@@ -1,4 +1,12 @@
+@import "../../App.css";
+
 .table {
     border-radius: 25px;
     overflow: hidden;
+}
+
+.option {
+    padding: 12px;
+    color: hsl(var(--text-color-lite)) !important;
+    border-top: 1px solid hsl(var(--primary-color)) !important;
 }

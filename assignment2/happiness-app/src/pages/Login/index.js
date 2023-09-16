@@ -26,7 +26,7 @@ const Login = ({ onLoginChanged }) => {
         })
     }
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
 
         const API_URL = "https://d2h6rsg43otiqk.cloudfront.net/prod"
@@ -47,6 +47,7 @@ const Login = ({ onLoginChanged }) => {
                 setMessage(data.message);
             } else {
                 localStorage.setItem("token", data.token);
+                localStorage.setItem("user", formData.email)
                 onLoginChanged(true);
                 navigate({ pathname: "/" });
             }
@@ -55,28 +56,6 @@ const Login = ({ onLoginChanged }) => {
         })
         .catch((error) => console.log(error));
     };
-
-    const getFactors = (e) => {
-        e.preventDefault();
-
-        const API_URL = "https://d2h6rsg43otiqk.cloudfront.net/prod"
-        const url = `${API_URL}/factors/2020`;
-        const token = localStorage.getItem("token")
-    
-        return fetch(url, {
-          method: "GET", // *GET, POST, PUT, DELETE, etc.
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`,
-         }
-       })
-          .then((res) =>
-            res.json().then(data => {
-              console.log(data);
-           })
-         )
-          .catch((error) => console.log(error));
-      };
 
     return (
         <Container fluid='sm'>

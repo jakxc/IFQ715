@@ -23,7 +23,7 @@ const Register = () => {
         })
     }
 
-    const handleRegister = (e) => {
+    const handleRegister = async (e) => {
         e.preventDefault();
 
         const API_URL = "https://d2h6rsg43otiqk.cloudfront.net/prod"

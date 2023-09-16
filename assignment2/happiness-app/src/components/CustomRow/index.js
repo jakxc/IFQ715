@@ -1,17 +1,14 @@
-import { Col, Row } from "react-bootstrap";
 import "./styles.css";
 
 const CustomRow = ({ data }) => {
-    const colElements = data.map((el, i, a) => {
-        console.log(a.length)
-        return <Col md={Math.floor(12/a.length)} className="">{el}</Col>
+    const rowElements = data.map((el, i, a) => {
+        return <div key={el}>{el}</div>
     })
 
-    console.log(data);
     return (
-        <Row className="background-dark | p-3 gap-3">
-           {colElements}
-        </Row>
+        <div className="background-dark | d-flex justify-content-around p-3">
+           {rowElements}
+        </div>
     )
 }
 

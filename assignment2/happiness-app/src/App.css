@@ -25,12 +25,10 @@ a:hover {
 }
 
 input {
-    font-size: 16px;
-    line-height: 28px;
     padding: 8px 16px;
-    width: 100%;
-    min-height: 44px;
-    max-width: 500px;
+    width: 500px;
+    max-height: 44px;
+    max-width: 75%;
     border: 1px solid hsl(var(--text-color-dark));
     border-radius: 4px;
     color: hsl(var(--text-color-dark));
@@ -46,6 +44,23 @@ input {
 
 input:focus {
   border: 2px solid hsl(var(--primary-color));
+}
+
+select {
+  cursor: pointer;
+  width: 200px;
+  max-width: 75%;
+  max-height: 50px;
+  border: 2px solid hsl(var(--primary-color));
+
+  /* Arrow */
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf-8,<svg width='10' height='6' fill='none' xmlns='http:%2F%2Fwww.w3.org/2000/svg'><path d='M1 1l4 4 4-4' stroke='hsl(20, 68%, 62%)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 0.7rem top 50%;
+  background-size: 0.65rem auto;
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */

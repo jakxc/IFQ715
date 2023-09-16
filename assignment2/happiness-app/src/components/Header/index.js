@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Container, Navbar, Nav } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
@@ -15,10 +15,14 @@ const HighlightLink = (props) => {
 }
 
 const Header = ( { isLoggedIn, onLoginChanged } ) => {
+    const navigate = useNavigate();
+
     const handleLogout = () => {
         localStorage.removeItem("token");
         onLoginChanged(false);
+        navigate({ pathname: "/" });
     }
+
     return (
         <header>
             <Container fluid className="d-flex justify-content-between align-items-center p-4">
@@ -31,6 +35,7 @@ const Header = ( { isLoggedIn, onLoginChanged } ) => {
                             />
                         </span>
                     </Navbar.Toggle>
+                    {isLoggedIn && <div className="primary-color | me-3">Welcome <span className="fw-bold">{localStorage.getItem("user")}</span>!</div>}
                     <Navbar.Collapse id="navbarSupportedContent">
                         <Nav className="gap-4">
                             {isLoggedIn && <HighlightLink onClick={handleLogout}>
