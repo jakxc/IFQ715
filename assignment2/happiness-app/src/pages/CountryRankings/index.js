@@ -10,7 +10,10 @@ const CountryRankings = () => {
   const [country, setCountry] = useState("");
   const [countries, setCountries] = useState([]);
   const [rankings, setRankings] = useState([]);
-  const years = ["2015", "2016", "2017", "2018", "2019", "2020"];
+  const [countriesAndYears, setCountriesAndYears] = useState([]);
+  const [displayLimit, setDisplayLimit] = useState(10);
+  const years = [2015, 2016, 2017, 2018, 2019, 2020];
+
 
   const getCountries = async() => {
     const API_URL = "https://d2h6rsg43otiqk.cloudfront.net/prod"
@@ -25,7 +28,7 @@ const CountryRankings = () => {
         "X-API-KEY": "EzensCqxyl63t09mVG6jr2AXriDQeimS95s4CdpV"
      }
     })
-    .then((res) => res.json())
+    .then(res => res.json())
     .then(data => {
           if (data.error) {
             setError(true);
@@ -38,57 +41,37 @@ const CountryRankings = () => {
   }
 
   const setCountryRankings = async () => {
-    const url = 'https://d2h6rsg43otiqk.cloudfront.net/prod/rankings?year=2020&country=Australia';
-    const token = localStorage.getItem("token");
-
-    return fetch(url, {
-      method: "GET", // *GET, POST, PUT, DELETE, etc.
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
-        "X-API-KEY": "EzensCqxyl63t09mVG6jr2AXriDQeimS95s4CdpV"
-      }
-    })
-    .then((res) => res.json())
-    .then(data => {
-      if (data.error) {
-        setError(true);
-        setMessage(data.message);
-      }
-
-      setRankings(data);
-    })
-    .catch((error) => console.log(error));
-  }
-
-  const getFactors = async (e) => {
-    // e.preventDefault();
-
-    const API_URL = "https://d2h6rsg43otiqk.cloudfront.net/prod";
-
-    const url = `${API_URL}/factors/2020`;
-    const token = localStorage.getItem("token")
-
-    return fetch(url, {
-      method: "GET", // *GET, POST, PUT, DELETE, etc.
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
-        "X-API-KEY": "EzensCqxyl63t09mVG6jr2AXriDQeimS95s4CdpV"
-     }
-    })
-    .then((res) =>
-      res.json().then(data => {
-        console.log(data);
+    Promise.all(countriesAndYears.slice(0, displayLimit * years.length).map(async (el) => {
+      const [country, year] = el;
+      const url = `https://d2h6rsg43otiqk.cloudfront.net/prod/rankings?year=${year}&country=${country}`;
+      const token = localStorage.getItem("token");
+      
+      return fetch(url, {
+        method: "GET", // *GET, POST, PUT, DELETE, etc.
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+          "X-API-KEY": "EzensCqxyl63t09mVG6jr2AXriDQeimS95s4CdpV"
+        }
       })
-    )
-    .catch((error) => console.log(error));
-  };
+    }))
+    .then(res => Promise.all(res.map(res => res.json())))
+    .then(data => console.log(data.slice(0, 10)))
+  }
 
   useEffect(() => {
     setLoading(true);
     getCountries()
-    .then(data => setCountries(data))
+    .then(data => {
+      setCountries(data);
+      setCountriesAndYears(data.reduce((acc, curr) => {
+        for (const year of years) {
+          acc.push([curr, year]);
+        }
+    
+        return acc;
+      }, []));
+    })
     .catch((error) => {
       console.log(error);
     })
@@ -106,7 +89,7 @@ const CountryRankings = () => {
     .finally(() => {
       setLoading(false);
     });
-  }, []);
+  }, [countriesAndYears, displayLimit]);
 
 
   const getRankingsByCountry = (query) => {
@@ -117,9 +100,9 @@ const CountryRankings = () => {
     return <option value={country}>{country}</option>
   })
 
-  const rankingElements = rankings.map(el => {
-    return <div>{el.country}({el.year}): {el.rank}</div>
-  })
+  // const rankingElements = rankings.map(el => {
+  //   return <div>{el.country}({el.year}): {el.rank}</div>
+  // })
 
   return (
       <Container>
@@ -137,7 +120,7 @@ const CountryRankings = () => {
           </div>
           <div className="d-flex flex-column overflow-hidden mt-5">
             {<CustomRow data={["Country", ...years.map(year => `${year} Ranking`)]}/>}
-            {rankingElements}
+            {/* {rankingElements} */}
           </div>
       </Container>
   )
