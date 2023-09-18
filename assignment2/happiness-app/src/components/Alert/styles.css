@@ -1,10 +1,15 @@
 @import "../../App.css";
 
-.alert {
-    max-width: 500px;
+.custom-alert {
+    width: 350px;
+    max-width: 75%;
     padding: 10px;
     border: 1px solid transparent;
     border-radius: 0.25rem;
+}
+
+.close-btn:hover {
+    opacity: 0.8;
 }
 
 div[type="error"] {

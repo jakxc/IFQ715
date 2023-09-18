@@ -157,7 +157,7 @@ const CountryRankings = () => {
   })
 
   return (
-      <Container>
+      <Container fluid className="p-4">
           <h3>Country Rankings</h3>
           <div className="d-flex flex-column gap-1">
               <label htmlFor="countries">Select a country:</label>
