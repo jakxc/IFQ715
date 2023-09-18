@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { Container, Col } from "react-bootstrap";
 import CustomRow from "../../components/CustomRow";
-import "./styles.css"
+// import "./styles.css"
 
-const CountryRankings = () => {
+const HappinessFactors = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
@@ -158,7 +158,7 @@ const CountryRankings = () => {
 
   return (
       <Container>
-          <h3>Country Rankings</h3>
+          <h3>Happiness Factor Rankings</h3>
           <div className="d-flex flex-column gap-1">
               <label htmlFor="countries">Select a country:</label>
               <select 
@@ -182,4 +182,4 @@ const CountryRankings = () => {
   )
 }
 
-export default CountryRankings;
+export default HappinessFactors;

@@ -1,12 +1,12 @@
 import "./styles.css";
 
-const CustomRow = ({ data }) => {
-    const rowElements = data.map((el, i, a) => {
-        return <div key={el}>{el}</div>
+const CustomRow = ({ data, styles }) => {
+    const rowElements = data.map((el, i) => {
+        return <div key={i} className="cell | d-flex justify-content-center p-3">{el}</div>
     })
 
     return (
-        <div className="background-dark | d-flex justify-content-around p-3">
+        <div className="d-flex justify-content-between gap-2" style={styles}>
            {rowElements}
         </div>
     )

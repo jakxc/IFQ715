@@ -1,5 +1,5 @@
 @import "../../App.css";
 
-.background-dark {
-    background-color: hsl(var(--primary-color), 0.5);
+.cell {
+    width: 300px;
 }

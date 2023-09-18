@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Register from './pages/Register'
 import Login from "./pages/Login";
 import CountryRankings from "./pages/CountryRankings";
+import HappinessFactors from "./pages/HappinessFactors";
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login onLoginChanged={setIsLoggedIn}/>} />
           <Route path="/countryRankings" element={<CountryRankings />} />
+          <Route path="/happinessFactors" element={<HappinessFactors />} />
         </Routes>
         <Footer />
       </div>

@@ -19,7 +19,7 @@ const Home = ({ isLoggedIn }) => {
                     </p>
                     { isLoggedIn ? <div className='d-flex gap-4'>
                         <Link to="/countryRankings"><button className='fw-bold'>Country Rankings</button></Link>
-                        <Link to="/countryRankings"><button className='fw-bold'>Happiness Factors</button></Link>
+                        <Link to="/happinessFactors"><button className='fw-bold'>Happiness Factors</button></Link>
                     </div> : <Link to='/login' className='primary-color | fw-bold'>Log in to view rankings.</Link> }
                 </Col>
                 <Col sm={12} md={6} className='my-auto'>
