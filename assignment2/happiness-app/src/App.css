@@ -10,18 +10,26 @@
   --primary-font: 'Maven Pro', sans-serif;
 }
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+
 body {
+  margin-bottom: 60px; /* Margin bottom by footer height + 20px*/
+  
   color: hsl(var(--text-color-lite));
   background-color: hsl(var(--background-color));
   font-family: var(--primary-font);
 }
 
 a {
+  color: hsl(var(--primary-color));
   text-decoration: none;
 }
 
 a:hover {
-  color: hsla(var(--primary-color), 0.726) !important;
+  color: hsla(var(--primary-color), 0.75) !important;
 }
 
 input {
@@ -116,6 +124,10 @@ button:hover:after {
 
 .text-dark {
   color: hsl(var(--text-color-dark));
+}
+
+.color-error {
+  color: hsl(var(--error-color));
 }
 
 .primary-background {

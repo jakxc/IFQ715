@@ -2,13 +2,15 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Container, Col, Row } from "react-bootstrap";
 import Alert from "../../components/Alert";
+import CustomSpinner from "../../components/CustomSpinner";
 import bastionImg from "../../assets/low-poly-bastion.png"
 
-const Register = () => {
+const Register = ({ apiUrl }) => {
     const [formData, setFormData] = useState({
         email: "",
         password: ""
     });
+    const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(false);
     const [message, setMessage] = useState("");
 
@@ -26,9 +28,9 @@ const Register = () => {
     const handleRegister = async (e) => {
         e.preventDefault();
 
-        const API_URL = "https://d2h6rsg43otiqk.cloudfront.net/prod"
-        const url = `${API_URL}/user/register`;
+        setIsLoading(true);
 
+        const url = `${apiUrl}/user/register`;
         return fetch(url, {
           method: "POST", // *GET, POST, PUT, DELETE, etc.
           headers: {
@@ -49,7 +51,8 @@ const Register = () => {
             setMessage(data.message);
             setFormData({email: "", password: ""});
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.log(error))
+        .finally(() => setIsLoading(false));
     };
 
     return (
@@ -60,6 +63,7 @@ const Register = () => {
                 </Col>
                 <Col sm={12} md={8} className="my-auto p-4">
                     <h3 className="primary-color">Create your account</h3>
+                    {isLoading && <div className="d-flex justify-content-start my-2"><CustomSpinner /></div>}
                     {message && <Alert type={error ? "error" : "success"} message={message}></Alert>}
                     <form className="d-flex flex-column gap-3">
                     <div className="d-flex flex-column">

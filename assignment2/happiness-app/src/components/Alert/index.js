@@ -8,10 +8,13 @@ function Alert({ message, type }) {
 
     return (
         <>
-        {<div className="custom-alert | d-flex justify-content-between align-items-center" type={type}>
-            <span>{ message }</span>
-            <FontAwesomeIcon icon={faXmarkCircle} className="close-btn" onClick={() => setIsOpen(false)}/>
-        </div>}
+        { isOpen 
+            ? <div className="custom-alert | d-flex justify-content-between align-items-center" type={type}>
+                <span>{ message }</span>
+                <FontAwesomeIcon icon={faXmarkCircle} className="close-btn" onClick={() => setIsOpen(false)}/>
+            </div>
+            : null
+        }
         </>
     );
 }

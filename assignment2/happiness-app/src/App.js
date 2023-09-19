@@ -7,10 +7,13 @@ import Register from './pages/Register'
 import Login from "./pages/Login";
 import CountryRankings from "./pages/CountryRankings";
 import HappinessFactors from "./pages/HappinessFactors";
+import NotFound from "./pages/NotFound";
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 
 function App() {
+  const API_URL = "https://d2h6rsg43otiqk.cloudfront.net/prod"
+
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("token") ? true : false
   );
@@ -21,10 +24,11 @@ function App() {
         <Header isLoggedIn={isLoggedIn} onLoginChanged={setIsLoggedIn}/>
         <Routes>
           <Route path="/" element={<Home isLoggedIn={isLoggedIn}/>} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login onLoginChanged={setIsLoggedIn}/>} />
-          <Route path="/countryRankings" element={<CountryRankings />} />
-          <Route path="/happinessFactors" element={<HappinessFactors />} />
+          <Route path="/register" element={<Register apiUrl={API_URL} />} />
+          <Route path="/login" element={<Login apiUrl={API_URL} onLoginChanged={setIsLoggedIn}/>} />
+          {isLoggedIn && <Route path="/country-rankings" element={<CountryRankings apiUrl={API_URL}/>} />}
+          {isLoggedIn && <Route path="/happiness-factors" element={<HappinessFactors apiUrl={API_URL}/>} />}
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </div>
