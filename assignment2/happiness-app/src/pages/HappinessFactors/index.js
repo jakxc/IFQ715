@@ -88,7 +88,7 @@ const HappinessFactors = ({ apiUrl }) => {
   })
 
   return (
-      <Container fluid="sm" className="p-4">
+      <Container fluid="sm" className="p-4 mb-5">
          <Link to="/country-rankings" className="fw-bold">View Country Rankings <span><FontAwesomeIcon icon={faArrowRight} style={{color: "#e0885c",}} /></span></Link>
           <h3 className="mt-3">Happiness Factor Rankings</h3>
           { error &&  <Alert type="error" message={message || "Unknown Error"}></Alert>}

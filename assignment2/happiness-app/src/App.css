@@ -10,14 +10,8 @@
   --primary-font: 'Maven Pro', sans-serif;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
-}
-
 body {
-  margin-bottom: 60px; /* Margin bottom by footer height + 20px*/
-  
+  position: relative;
   color: hsl(var(--text-color-lite));
   background-color: hsl(var(--background-color));
   font-family: var(--primary-font);
@@ -83,7 +77,6 @@ select {
   color: hsl(var(--text-color-dark), 0.3)
 }
 
-/* CSS */
 button {
   letter-spacing: 1px;
   padding: 10px 20px 10px;
@@ -114,6 +107,15 @@ button:hover:after {
   left: 0px;
 }
 
+.app {
+  min-height: 100vh;
+  padding-top: 75px;
+  scroll-behavior: smooth;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Util classes */
 .primary-color {
   color: hsl(var(--primary-color));
 }

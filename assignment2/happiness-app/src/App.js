@@ -20,7 +20,7 @@ function App() {
 
   return (
     <Router>
-      <div className="App">
+      <div className="app">
         <Header isLoggedIn={isLoggedIn} onLoginChanged={setIsLoggedIn}/>
         <Routes>
           <Route path="/" element={<Home isLoggedIn={isLoggedIn}/>} />

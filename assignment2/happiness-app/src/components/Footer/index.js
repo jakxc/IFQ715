@@ -5,7 +5,7 @@ import "./styles.css"
 
 const Footer = () => {
     return (
-        <footer className='footer | d-flex justify-content-between align-items-end p-4'>
+        <footer className='footer | d-flex justify-content-between align-items-center p-4'>
             <div>
                 © 2023 Copyright: <a className="fw-bold" href="">jakxc</a>
             </div>

@@ -8,6 +8,19 @@ nav a:hover {
     color: hsl(var(--primary-color), 0.726) !important;
 }
 
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+    transition:  0.32s ease-in-out;
+}
+
+.scrolled {
+    background-color: hsl(var(--text-color-dark));
+    box-shadow: 0 2px 4px 0 hsl(var(--text-color-dark));
+}
+
 .nav_toggle {
     border: none;
     color: var(--text-color-lite) !important;
