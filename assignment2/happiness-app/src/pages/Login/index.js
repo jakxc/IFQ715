@@ -30,6 +30,9 @@ const Login = ({ onLoginChanged, apiUrl }) => {
 
     const handleLogin = async (e) => {
         e.preventDefault();
+
+        setMessage("");
+        setError(false);
         setIsLoading(true);
 
         const url = `${apiUrl}/user/login`;
@@ -62,14 +65,16 @@ const Login = ({ onLoginChanged, apiUrl }) => {
     return (
         <Container fluid='sm'>
             <Row>
-                <Col sm={12} md={4} className="my-auto">
-                    <img src= {bastionImg}
-                    className="bastion-img anim-hover" alt="Bastion"></img>
+                <Col sm={12} md={5}>
+                    <div className="d-flex justify-content-end">
+                        <img src= {bastionImg}
+                        className="bastion-img anim-hover" alt="Bastion"></img>
+                    </div>
                 </Col>
-                <Col sm={12} md={8} className="my-auto p-4">
+                <Col sm={12} md={7} className="my-auto">
                     <h3 className="primary-color">Log In</h3>
                     {isLoading && <div className="d-flex justify-content-start my-2"><CustomSpinner /></div>}
-                    {message && <Alert type={error ? "error" : "success"} message={message}></Alert>}
+                    {message && <Alert type={error ? "error" : "success"} message={message} onClose={() => setMessage("")} />}
                     <form className="d-flex flex-column gap-3">
                         <div className="d-flex flex-column">
                             <label className="form-label" htmlFor="emailInput">Email address</label>

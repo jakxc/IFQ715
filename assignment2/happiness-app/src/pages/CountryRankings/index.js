@@ -7,8 +7,6 @@ import Alert from "../../components/Alert";
 import CustomRow from "../../components/CustomRow";
 import CustomSpinner from "../../components/CustomSpinner";
 
-import "./styles.css"
-
 const CountryRankings = ({ apiUrl }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -162,11 +160,11 @@ const CountryRankings = ({ apiUrl }) => {
   }
 
   const countryElements = countries.map(el => {
-    return <option value={el}>{el}</option>
+    return <option value={el} style={{color: "hsla(0, 0%, 11%, 0.75)"}}>{el}</option>
   })
 
   const limitElements = limits.map(el => {
-    return <option value={el}>{el}</option>
+    return <option value={el} style={{color: "hsla(0, 0%, 11%, 0.75)"}}>{el}</option>
   })
 
   const rankingElements = Object.keys(rankings).map((el, i) => {
@@ -193,7 +191,7 @@ const CountryRankings = ({ apiUrl }) => {
                 className="p-2"
                 onChange={onCountryChanged}
               >
-                  <option value="">None</option>
+                  <option value="" style={{color: "hsla(0, 0%, 11%, 0.75)"}}>None</option>
                   {countryElements}
               </select>
           </div>

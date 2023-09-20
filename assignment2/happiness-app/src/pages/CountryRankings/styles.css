@@ -1,7 +1,0 @@
-@import "../../App.css";
-
-.option {
-    padding: 12px;
-    color: hsl(var(--text-color-lite)) !important;
-    border-top: 1px solid hsl(var(--primary-color)) !important;
-}

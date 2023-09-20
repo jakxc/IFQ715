@@ -68,11 +68,11 @@ const HappinessFactors = ({ apiUrl }) => {
   }
 
   const yearElements = years.map(el => {
-    return <option value={el}>{el}</option>
+    return <option value={el} style={{color: "hsla(0, 0%, 11%, 0.75)"}}>{el}</option>
   })
 
   const limitElements = limits.map(el => {
-    return <option value={el}>{el}</option>
+    return <option value={el} style={{color: "hsla(0, 0%, 11%, 0.75)"}}>{el}</option>
   })
 
   const factorElements = factors.map((el, i) => {

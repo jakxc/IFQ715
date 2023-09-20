@@ -27,7 +27,8 @@ const Register = ({ apiUrl }) => {
 
     const handleRegister = async (e) => {
         e.preventDefault();
-
+        setMessage("");
+        setError(false);
         setIsLoading(true);
 
         const url = `${apiUrl}/user/register`;
@@ -58,13 +59,15 @@ const Register = ({ apiUrl }) => {
     return (
         <Container fluid='sm'>
             <Row>
-                <Col sm={12} md={4} className="my-auto">
-                    <img className="bastion-img anim-hover" src= {bastionImg} alt="Robot"></img>
+                <Col sm={12} md={5} className="my-auto">
+                    <div className="d-flex justify-content-end">
+                        <img className="bastion-img anim-hover" src= {bastionImg} alt="Bastion"></img>
+                    </div>
                 </Col>
-                <Col sm={12} md={8} className="my-auto p-4">
+                <Col sm={12} md={7} className="my-auto p-4">
                     <h3 className="primary-color">Create your account</h3>
                     {isLoading && <div className="d-flex justify-content-start my-2"><CustomSpinner /></div>}
-                    {message && <Alert type={error ? "error" : "success"} message={message}></Alert>}
+                    {message && <Alert type={error ? "error" : "success"} message={message} onClose={() => setMessage("")} />}
                     <form className="d-flex flex-column gap-3">
                     <div className="d-flex flex-column">
                             <label className="form-label" htmlFor="emailInput">Email address</label>
