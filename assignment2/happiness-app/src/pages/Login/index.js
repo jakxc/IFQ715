@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Container, Col, Row } from "react-bootstrap";
 import Alert from "../../components/Alert";
 import CustomSpinner from "../../components/CustomSpinner";
-import bastionImg from "../../assets/low-poly-bastion.png"
+import loginImg from "../../assets/man-img.jpg"
 import "./styles.css"
 
 const Login = ({ onLoginChanged, apiUrl }) => {
@@ -63,16 +63,13 @@ const Login = ({ onLoginChanged, apiUrl }) => {
     };
 
     return (
-        <Container fluid='sm'>
+        <Container fluid="sm" className="mt-5 pt-5">
             <Row>
-                <Col sm={12} md={5}>
-                    <div className="d-flex justify-content-end">
-                        <img src= {bastionImg}
-                        className="bastion-img anim-hover" alt="Bastion"></img>
-                    </div>
+                <Col sm={12} md={6}>
+                    <img src= {loginImg} className="login-img | rounded-5" alt="Background with man"></img>
                 </Col>
-                <Col sm={12} md={7} className="my-auto">
-                    <h3 className="primary-color">Log In</h3>
+                <Col sm={12} md={6}>
+                    <h3 className="color-primary">Log In</h3>
                     {isLoading && <div className="d-flex justify-content-start my-2"><CustomSpinner /></div>}
                     {message && <Alert type={error ? "error" : "success"} message={message} onClose={() => setMessage("")} />}
                     <form className="d-flex flex-column gap-3">
@@ -100,7 +97,7 @@ const Login = ({ onLoginChanged, apiUrl }) => {
                         </div>
                         <div className="text-center text-lg-start pt-2">
                             <button className="fw-bold" onClick={handleLogin}>Login</button>
-                            <p className="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <Link className="primary-color" 
+                            <p className="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <Link className="color-primary" 
                             to="/register">Register here</Link></p> 
                         </div>
                     </form>

@@ -9,7 +9,7 @@
     height: 42px;
     border-radius: 50%;
     line-height: 1;
-    border: 1px solid hsl(var(--text-color-lite));
+    border: 1px solid hsl(var(--clr-lite));
 }
 
 .social-icon a::before {
@@ -17,8 +17,8 @@
     width: 42px;
     height: 42px;
     position: absolute;
-    color: hsl(var(--text-color-dark));
-    background-color: hsl(var(--primary-color));
+    color: hsl(var(--clr-dark));
+    background-color: hsl(var(--clr-primary));
     border-radius: 50%;
     transform: scale(0);
 	transition: 0.3s ease-in-out;

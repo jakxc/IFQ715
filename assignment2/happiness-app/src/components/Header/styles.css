@@ -1,12 +1,5 @@
 @import "../../App.css";
 
-nav a {
-    color: hsl(var(--primary-color));
-}
-
-nav a:hover {
-    color: hsl(var(--primary-color), 0.726) !important;
-}
 
 .header {
     position: fixed;
@@ -17,11 +10,11 @@ nav a:hover {
 }
 
 .scrolled {
-    background-color: hsl(var(--text-color-dark));
-    box-shadow: 0 2px 4px 0 hsl(var(--text-color-dark));
+    background-color: hsl(var(--clr-dark));
+    box-shadow: 0 2px 5px 0 hsl(var(--clr-dark));
 }
 
 .nav_toggle {
     border: none;
-    color: var(--text-color-lite) !important;
+    color: var(-clr-lite) !important;
 }

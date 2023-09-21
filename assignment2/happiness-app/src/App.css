@@ -1,29 +1,30 @@
 
 :root {
-  --background-color: 0, 0%, 25%;
-  --primary-color: 20, 68%, 62%;
-  --text-color-lite: 0, 0%, 89%;
-  --text-color-dark: 0, 0%, 11%;
-  --success-color: 125, 57%, 60%;
-  --error-color: 0, 68%, 56%;
+  --clr-background: 0, 0%, 25%;
+  --clr-primary: 20, 68%, 62%;
+  --clr-lite: 0, 0%, 89%;
+  --clr-dark: 0, 0%, 11%;
+  --clr-success: 125, 57%, 60%;
+  --clr-error: 0, 68%, 56%;
   
-  --primary-font: 'Maven Pro', sans-serif;
+  --ff-primary: 'Maven Pro', sans-serif;
 }
 
 body {
   position: relative;
-  color: hsl(var(--text-color-lite));
-  background-color: hsl(var(--background-color));
-  font-family: var(--primary-font);
+  color: hsl(var(--clr-lite));
+  background-color: hsl(var(--clr-background));
+  font-family: var(--ff-primary);
 }
 
 a {
-  color: hsl(var(--primary-color));
+  color: hsl(var(--clr-primary));
   text-decoration: none;
+  transition:  0.2s ease-in-out;
 }
 
 a:hover {
-  color: hsla(var(--primary-color), 0.75) !important;
+  color: hsla(var(--clr-primary), 0.75) !important;
 }
 
 input {
@@ -31,9 +32,9 @@ input {
     width: 500px;
     height: 44px;
     max-width: 100%;
-    border: 1px solid hsl(var(--text-color-dark));
+    border: 1px solid hsl(var(--clr-dark));
     border-radius: 4px;
-    color: hsl(var(--text-color-dark));
+    color: hsl(var(--clr-dark));
     background-color: rgb(255, 255, 255);
     box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
                 rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
@@ -45,7 +46,7 @@ input {
 }
 
 input:focus {
-  border: 2px solid hsl(var(--primary-color));
+  border: 2px solid hsl(var(--clr-primary));
 }
 
 select {
@@ -53,7 +54,7 @@ select {
   width: 250px;
   height: 50px;
   max-width: 100%;
-  border: 2px solid hsl(var(--primary-color));
+  border: 2px solid hsl(var(--clr-primary));
 
   /* Arrow */
   -moz-appearance: none;
@@ -66,25 +67,27 @@ select {
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: hsl(var(--text-color-dark), 0.3)
+  color: hsl(var(--clr-dark), 0.3)
 }
 
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
-  color: hsl(var(--text-color-dark), 0.3)
+  color: hsl(var(--clr-dark), 0.3)
 }
 
 ::-ms-input-placeholder { /* Microsoft Edge */
-  color: hsl(var(--text-color-dark), 0.3)
+  color: hsl(var(--clr-dark), 0.3)
 }
 
 button {
-  letter-spacing: 1px;
+  width: 200px;
+  max-width: 100%;
   padding: 10px 20px 10px;
+  text-align: center;
   outline: 0;
-  border: 1px solid hsl(var(--primary-color));
+  border: 1px solid hsl(var(--clr-primary));
   cursor: pointer;
   position: relative;
-  color: hsl(var(--text-color-dark));
+  color: hsl(var(--clr-dark));
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
@@ -92,7 +95,7 @@ button {
 
 button:after {
   content: "";
-  background-color: hsl(var(--primary-color), 0.726);
+  background-color: hsl(var(--clr-primary), 0.75);
   width: 100%;
   z-index: -1;
   position: absolute;
@@ -116,24 +119,24 @@ button:hover:after {
 }
 
 /* Util classes */
-.primary-color {
-  color: hsl(var(--primary-color));
+.color-primary {
+  color: hsl(var(--clr-primary));
 }
 
-.text-light {
-  color: hsl(var(--text-color-lite));
+.color-lite {
+  color: hsl(var(--clr-lite));
 }
 
-.text-dark {
-  color: hsl(var(--text-color-dark));
+.color-dark {
+  color: hsl(var(--clr-dark));
 }
 
 .color-error {
-  color: hsl(var(--error-color));
+  color: hsl(var(--clr-error));
 }
 
-.primary-background {
-  background-color: hsl(var(--primary-color));
+.background-primary {
+  background-color: hsl(var(--clr-primary));
 }
 
 .anim-hover {

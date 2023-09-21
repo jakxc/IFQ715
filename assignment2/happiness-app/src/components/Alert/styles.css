@@ -1,8 +1,8 @@
 @import "../../App.css";
 
 .custom-alert {
-    width: 350px;
-    max-width: 75%;
+    width: 400px;
+    max-width: 100%;
     padding: 10px;
     border: 1px solid transparent;
     border-radius: 0.25rem;
@@ -13,11 +13,11 @@
 }
 
 div[type="error"] {
-    background-color: hsl(var(--error-color), 0.5);
-    border-color: hsl(var(--error-color));
+    background-color: hsl(var(--clr-error), 0.5);
+    border-color: hsl(var(--clr-error));
 }
 
 div[type="success"] {
-    background-color: hsl(var(--success-color), 0.5);
-    border-color: hsl(var(--success-color));
+    background-color: hsl(var(--clr-success), 0.5);
+    border-color: hsl(var(--clr-success));
 }

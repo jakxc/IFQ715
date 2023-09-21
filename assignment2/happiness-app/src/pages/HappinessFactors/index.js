@@ -17,7 +17,7 @@ const HappinessFactors = ({ apiUrl }) => {
   // const [country, setCountry] = useState("");
   const [factors, setFactors] = useState([]);
   const years = [2015, 2016, 2017, 2018, 2019, 2020];
-  const limits = Array.from({length: 15}, (_, i) => {return (i + 1) * 10})
+  const limits = Array.from({ length: 10 }, (_, i) => {return (i + 1) * 10})
 
   const getFactors = async(c, y, l) => {
     const url = `${apiUrl}/factors/${y}?limit=${l}${c.length > 0 ? `&country=${c}` : ""}`;
@@ -88,9 +88,9 @@ const HappinessFactors = ({ apiUrl }) => {
   })
 
   return (
-      <Container fluid="sm" className="p-4 mb-5">
+      <Container fluid="sm" className="px-3 my-5">
          <Link to="/country-rankings" className="fw-bold">View Country Rankings <span><FontAwesomeIcon icon={faArrowRight} style={{color: "#e0885c",}} /></span></Link>
-          <h3 className="mt-3">Happiness Factor Rankings</h3>
+          <h3 className="mt-3 fw-bold">Happiness Factor Rankings</h3>
           { error &&  <Alert type="error" message={message || "Unknown Error"}></Alert>}
           <div className="d-flex justify-content-between">
             <div className="d-flex flex-column gap-1">

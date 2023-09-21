@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { Container, Col, Row } from "react-bootstrap";
 import Alert from "../../components/Alert";
 import CustomSpinner from "../../components/CustomSpinner";
-import bastionImg from "../../assets/low-poly-bastion.png"
+import registerImg from "../../assets/sunset-img.jpg"
+import "./styles.css"
 
 const Register = ({ apiUrl }) => {
     const [formData, setFormData] = useState({
@@ -57,15 +58,13 @@ const Register = ({ apiUrl }) => {
     };
 
     return (
-        <Container fluid='sm'>
+        <Container fluid='sm' className="mt-5 pt-5">
             <Row>
-                <Col sm={12} md={5} className="my-auto">
-                    <div className="d-flex justify-content-end">
-                        <img className="bastion-img anim-hover" src= {bastionImg} alt="Bastion"></img>
-                    </div>
+                <Col sm={12} md={6}>
+                    <img className="register-img | rounded-5" src= {registerImg} alt="Background with girl"></img>
                 </Col>
-                <Col sm={12} md={7} className="my-auto p-4">
-                    <h3 className="primary-color">Create your account</h3>
+                <Col sm={12} md={6}>
+                    <h3 className="color-primary">Create your account</h3>
                     {isLoading && <div className="d-flex justify-content-start my-2"><CustomSpinner /></div>}
                     {message && <Alert type={error ? "error" : "success"} message={message} onClose={() => setMessage("")} />}
                     <form className="d-flex flex-column gap-3">
@@ -93,7 +92,7 @@ const Register = ({ apiUrl }) => {
                         </div>
                         <div className="text-center text-lg-start pt-2">
                             <button className="fw-bold" onClick={handleRegister}>Create your account</button>
-                            <p className="small fw-bold mt-2 pt-1 mb-0">Already have an account? <Link className="primary-color" 
+                            <p className="small fw-bold mt-2 pt-1 mb-0">Already have an account? <Link className="color-primary" 
                             to="/login">Login here</Link></p>
                         </div>
                     </form>

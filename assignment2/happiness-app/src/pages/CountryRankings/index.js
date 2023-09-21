@@ -14,11 +14,9 @@ const CountryRankings = ({ apiUrl }) => {
   const [country, setCountry] = useState("");
   const [countries, setCountries] = useState([]);
   const [rankings, setRankings] = useState([]);
-  const [countriesAndYears, setCountriesAndYears] = useState([]);
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState('0-10');
   const years = [2015, 2016, 2017, 2018, 2019, 2020];
-  const limits = Array.from({length: 5}, (_, i) => {return (i + 1) * 10})
-
+  const limits = Array.from({ length : 17 }, (_, i) => {return { 'lower': i == 0 ? 0 : i * 10, 'upper': (i + 1) * 10 < 167 ? (i + 1) * 10 : 167}})
   const groupDataByCountry = (dataset) => {
     const obj = {};
     for (let i=0; i<dataset.length; i++) {
@@ -58,10 +56,28 @@ const CountryRankings = ({ apiUrl }) => {
   }
 
   const getCountryRankings = async (c = "") => {
+    const token = localStorage.getItem("token");
     if (c.length > 0) {
-      Promise.all(years.map(async (el) => {
-        const url = `${apiUrl}/rankings?year=${el}&country=${c}`;
-        const token = localStorage.getItem("token");
+        const url = `${apiUrl}/rankings?country=${c}`;
+        
+        return fetch(url, {
+          method: "GET", // *GET, POST, PUT, DELETE, etc.
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+            "X-API-KEY": "EzensCqxyl63t09mVG6jr2AXriDQeimS95s4CdpV"
+          }
+        })      
+        .then(res => res.json())
+        .then(data => {
+          if (data.error) {
+            setError(true);
+            setMessage(data.message);
+          }
+          return data;
+        })
+      } else {
+        const url = `${apiUrl}/rankings`;
         
         return fetch(url, {
           method: "GET", // *GET, POST, PUT, DELETE, etc.
@@ -71,48 +87,14 @@ const CountryRankings = ({ apiUrl }) => {
             "X-API-KEY": "EzensCqxyl63t09mVG6jr2AXriDQeimS95s4CdpV"
           }
         })
-      }))
-      .then(res => Promise.all(res.map(res => res.json())))
+      .then(res => res.json())
       .then(data => {
         if (data.error) {
           setError(true);
           setMessage(data.message);
         }
 
-        const temp = groupDataByCountry(data.reduce((acc, curr) => {
-          if (Array.isArray(curr)) acc.push(...curr);  
-          return acc;
-        }, []));
-          // console.log(temp)
-          setRankings(temp);
-      })
-    } else {
-      Promise.all(countriesAndYears.slice(0, limit * years.length).map(async (el) => {
-        const [country, year] = el;
-        const url = `${apiUrl}/rankings?year=${year}&country=${country}`;
-        const token = localStorage.getItem("token");
-        
-        return fetch(url, {
-          method: "GET", // *GET, POST, PUT, DELETE, etc.
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`,
-            "X-API-KEY": "EzensCqxyl63t09mVG6jr2AXriDQeimS95s4CdpV"
-          }
-        })
-      }))
-      .then(res => Promise.all(res.map(res => res.json())))
-      .then(data => {
-        if (data.error) {
-          setError(true);
-          setMessage(data.message);
-        }
-
-        const temp = groupDataByCountry(data.reduce((acc, curr) => {
-          if (Array.isArray(curr)) acc.push(...curr);  
-          return acc;
-        }, []));
-          setRankings(temp);
+          return data;
         })
       }
     }
@@ -121,14 +103,8 @@ const CountryRankings = ({ apiUrl }) => {
     setIsLoading(true);
     getCountries()
     .then(data => {
+      console.log(data.length);
       setCountries(data);
-      setCountriesAndYears(data.reduce((acc, curr) => {
-        for (const year of years) {
-          acc.push([curr, year]);
-        }
-    
-        return acc;
-      }, []));
     })
     .catch((error) => {
       console.log(error);
@@ -141,13 +117,21 @@ const CountryRankings = ({ apiUrl }) => {
   useEffect(() => {
     setIsLoading(true);
     getCountryRankings(country)
+    .then(data => {
+      const sortedData = data.sort((a,b) => 
+      a['country'] === b['country'] 
+      ? 0 
+      : a['country'] > b['country'] ? 1 : -1)
+      const temp = groupDataByCountry(sortedData);
+      setRankings(temp);
+    })
     .catch((error) => {
       console.log(error);
     })
     .finally(() => {
       setIsLoading(false);
     });
-  }, [country, countriesAndYears, limit]);
+  }, [country]);
 
   const onCountryChanged = (e) => {
     const { value } = e.target;
@@ -164,10 +148,14 @@ const CountryRankings = ({ apiUrl }) => {
   })
 
   const limitElements = limits.map(el => {
-    return <option value={el} style={{color: "hsla(0, 0%, 11%, 0.75)"}}>{el}</option>
+    return <option value={`${el['lower']}-${el['upper']}`} style={{color: "hsla(0, 0%, 11%, 0.75)"}}>{`${el['lower'] + 1}-${el['upper']}`}</option>
   })
 
-  const rankingElements = Object.keys(rankings).map((el, i) => {
+  const rankingsWithinLimit = Object.keys(rankings).length > 1 
+  ? Object.keys(rankings).slice(limit.split('-')[0], limit.split('-')[1]) 
+  :  Object.keys(rankings);
+
+  const rankingElements = rankingsWithinLimit.map((el, i) => {
     const countryRankings = [el, rankings[el][2015] || 'N/A', rankings[el][2016] || 'N/A', 
     rankings[el][2017] || 'N/A', rankings[el][2018] || 'N/A', 
     rankings[el][2019] || 'N/A', rankings[el][2020] || 'N/A']
@@ -178,9 +166,9 @@ const CountryRankings = ({ apiUrl }) => {
   })
 
   return (
-      <Container fluid="sm" className="p-4 mb-5">
+      <Container fluid="sm" className="px-3 my-5">
         <Link to="/happiness-factors" className="fw-bold">View Happiness Factor Rankings <span><FontAwesomeIcon icon={faArrowRight} style={{color: "#e0885c",}} /></span></Link>
-        <h3 className="mt-3">Country Rankings</h3>
+        <h3 className="mt-3 fw-bold">Country Rankings</h3>
         { error &&  <Alert type="error" message={message || "Unknown Error"}></Alert>}
         <div className="d-flex justify-content-between">
           <div className="d-flex flex-column gap-1">

@@ -1,4 +1,6 @@
-.bastion-img {
-    width: 300px;
+@import "../../App.css";
+
+.register-img {
     max-width: 100%;
+    border: solid 1px hsl(var(--color-primary));
 }

@@ -1,6 +1,6 @@
 import { Container, Col, Row } from 'react-bootstrap';
 import { NavLink as Link } from "react-router-dom";
-import earthImg from '../../assets/low-poly-earth.png';
+import earthImg from '../../assets/earth-img.png';
 import './styles.css';
 
 const Home = ({ isLoggedIn }) => {
@@ -8,7 +8,7 @@ const Home = ({ isLoggedIn }) => {
         <Container fluid="md" className='p-5'>
             <Row>
                 <Col sm={12} md={6} className='my-auto'> 
-                    <h2 className='primary-color | fw-bold'>Welcome to the World Happiness Rankings!</h2>
+                    <h2 className='color-primary | fw-bold'>Welcome to the World Happiness Rankings!</h2>
                     <p>What is <span className='fw-bold'>happiness</span>? Is it defined as <span className='fw-bold'>"Feeling or showing pleasure or contentment."</span> by 
                     Oxford English Dictionary. How does one accurately measure this?</p>
                     <p>The World Happiness Report does attempt to do this and convert it into meaningful data. This publication has rankings of national happiness based on respondent 
@@ -20,11 +20,11 @@ const Home = ({ isLoggedIn }) => {
                     { isLoggedIn ? <div className='d-flex gap-4'>
                         <Link to="/country-rankings"><button className='fw-bold'>Country Rankings</button></Link>
                         <Link to="/happiness-factors"><button className='fw-bold'>Happiness Factors</button></Link>
-                    </div> : <Link to='/login' className='primary-color | fw-bold'>Log in to view rankings.</Link> }
+                    </div> : <Link to='/login' className='color-primary | fw-bold'>Log in to view rankings.</Link> }
                 </Col>
                 <Col sm={12} md={6} className='my-auto'>
                     <div className='d-flex justify-content-center'>
-                        <img src={earthImg} alt='Earth' className='world-img anim-hover'/>
+                        <img src={earthImg} alt='Earth' className='img-world anim-hover'/>
                     </div>
                 </Col>
             </Row>
