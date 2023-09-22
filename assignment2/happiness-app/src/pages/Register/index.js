@@ -61,6 +61,7 @@ const Register = ({ apiUrl }) => {
         <Container fluid='sm' className="mt-5 pt-5">
             <Row>
                 <Col sm={12} md={6}>
+                    {/* https://pixabay.com/illustrations/sunset-anime-minimal-nature-sky-7628294/ */}
                     <img className="register-img | rounded-5" src= {registerImg} alt="Background with girl"></img>
                 </Col>
                 <Col sm={12} md={6}>

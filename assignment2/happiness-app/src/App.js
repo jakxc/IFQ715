@@ -26,8 +26,8 @@ function App() {
           <Route path="/" element={<Home isLoggedIn={isLoggedIn}/>} />
           <Route path="/register" element={<Register apiUrl={API_URL} />} />
           <Route path="/login" element={<Login apiUrl={API_URL} onLoginChanged={setIsLoggedIn}/>} />
-          {isLoggedIn && <Route path="/country-rankings" element={<CountryRankings apiUrl={API_URL}/>} />}
-          {isLoggedIn && <Route path="/happiness-factors" element={<HappinessFactors apiUrl={API_URL}/>} />}
+          <Route path="/country-rankings" element={<CountryRankings apiUrl={API_URL} isLoggedIn={isLoggedIn} /> } />
+          <Route path="/happiness-factors" element={<HappinessFactors apiUrl={API_URL} isLoggedIn={isLoggedIn} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

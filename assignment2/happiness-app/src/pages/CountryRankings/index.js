@@ -7,7 +7,7 @@ import Alert from "../../components/Alert";
 import CustomRow from "../../components/CustomRow";
 import CustomSpinner from "../../components/CustomSpinner";
 
-const CountryRankings = ({ apiUrl }) => {
+const CountryRankings = ({ apiUrl, isLoggedIn }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
@@ -17,6 +17,7 @@ const CountryRankings = ({ apiUrl }) => {
   const [limit, setLimit] = useState('0-10');
   const years = [2015, 2016, 2017, 2018, 2019, 2020];
   const limits = Array.from({ length : 17 }, (_, i) => {return { 'lower': i == 0 ? 0 : i * 10, 'upper': (i + 1) * 10 < 167 ? (i + 1) * 10 : 167}})
+  
   const groupDataByCountry = (dataset) => {
     const obj = {};
     for (let i=0; i<dataset.length; i++) {
@@ -89,11 +90,6 @@ const CountryRankings = ({ apiUrl }) => {
         })
       .then(res => res.json())
       .then(data => {
-        if (data.error) {
-          setError(true);
-          setMessage(data.message);
-        }
-
           return data;
         })
       }
@@ -103,8 +99,12 @@ const CountryRankings = ({ apiUrl }) => {
     setIsLoading(true);
     getCountries()
     .then(data => {
-      console.log(data.length);
-      setCountries(data);
+      if (data.error) {
+        setError(true);
+        setMessage(data.message);
+      } else {
+        setCountries(data);
+      }
     })
     .catch((error) => {
       console.log(error);
@@ -118,19 +118,24 @@ const CountryRankings = ({ apiUrl }) => {
     setIsLoading(true);
     getCountryRankings(country)
     .then(data => {
-      const sortedData = data.sort((a,b) => 
-      a['country'] === b['country'] 
-      ? 0 
-      : a['country'] > b['country'] ? 1 : -1)
-      const temp = groupDataByCountry(sortedData);
-      setRankings(temp);
+      if (data.error) {
+        setError(true);
+        setMessage(data.message);
+      } else {
+        const sortedData = data.sort((a,b) => 
+        a['country'] === b['country'] 
+        ? 0 
+        : a['country'] > b['country'] ? 1 : -1)
+        const temp = groupDataByCountry(sortedData);
+        setRankings(temp);
+      }
     })
     .catch((error) => {
       console.log(error);
     })
     .finally(() => {
       setIsLoading(false);
-    });
+    })
   }, [country]);
 
   const onCountryChanged = (e) => {
@@ -169,41 +174,47 @@ const CountryRankings = ({ apiUrl }) => {
       <Container fluid="sm" className="px-3 my-5">
         <Link to="/happiness-factors" className="fw-bold">View Happiness Factor Rankings <span><FontAwesomeIcon icon={faArrowRight} style={{color: "#e0885c",}} /></span></Link>
         <h3 className="mt-3 fw-bold">Country Rankings</h3>
-        { error &&  <Alert type="error" message={message || "Unknown Error"}></Alert>}
-        <div className="d-flex justify-content-between">
-          <div className="d-flex flex-column gap-1">
-              <label htmlFor="countries">Select a country:</label>
-              <select 
-                id="country" 
-                name="country"
-                className="p-2"
-                onChange={onCountryChanged}
-              >
-                  <option value="" style={{color: "hsla(0, 0%, 11%, 0.75)"}}>None</option>
-                  {countryElements}
-              </select>
+        { isLoggedIn 
+          ? <>
+          { error &&  <Alert type="error" message={message || "Unknown Error"}></Alert>}
+          <div className="d-flex justify-content-between">
+            <div className="d-flex flex-column gap-1">
+                <label htmlFor="countries">Select a country:</label>
+                <select 
+                  id="country" 
+                  name="country"
+                  className="p-2"
+                  onChange={onCountryChanged}
+                >
+                    <option value="" style={{color: "hsla(0, 0%, 11%, 0.75)"}}>None</option>
+                    {countryElements}
+                </select>
+            </div>
+            <div className="d-flex flex-column gap-1">
+                    <label htmlFor="limits">Limit results to:</label>
+                    <select 
+                      id="limits" 
+                      name="limit"
+                      className="p-2"
+                      onChange={onLimitChanged}
+                    >
+                        {limitElements}
+                    </select>
+            </div>
           </div>
-          <div className="d-flex flex-column gap-1">
-                  <label htmlFor="limits">Limit results to:</label>
-                  <select 
-                    id="limits" 
-                    name="limit"
-                    className="p-2"
-                    onChange={onLimitChanged}
-                  >
-                      {limitElements}
-                  </select>
-          </div>
-        </div>
-        {isLoading
-        ? <div className="vh-100 d-flex justify-content-center align-items-center"><CustomSpinner message="Loading, please wait..."/></div>
-        : <Col className="mt-5 rounded-3 overflow-hidden">
-            <CustomRow 
-              data={["Country", ...years.map(year => `${year} Ranking`)]}
-              styles={{backgroundColor: "hsl(20, 68%, 62%)", fontSize: "0.9rem", fontWeight: "bold"}}
-            />
-            {rankingElements}
-          </Col>}
+          {isLoading
+          ? <div className="vh-100 d-flex justify-content-center align-items-center"><CustomSpinner message="Loading, please wait..."/></div>
+          : <Col className="mt-5 rounded-3 overflow-hidden">
+              <CustomRow 
+                data={["Country", ...years.map(year => `${year} Ranking`)]}
+                styles={{backgroundColor: "hsl(20, 68%, 62%)", fontSize: "0.9rem", fontWeight: "bold"}}
+              />
+              {rankingElements}
+            </Col>}
+          </>
+          : <p>You have to be logged in to view rankings. Click <Link to="/login" className="fw-bold">here</Link> to login if you already haven an account
+          or register <Link to="/register" className="fw-bold">here</Link></p>
+          }
       </Container>
   )
 }

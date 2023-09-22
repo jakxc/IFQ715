@@ -6,9 +6,8 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import Alert from "../../components/Alert";
 import CustomSpinner from "../../components/CustomSpinner";
 import CustomRow from "../../components/CustomRow";
-// import "./styles.css"
 
-const HappinessFactors = ({ apiUrl }) => {
+const HappinessFactors = ({ apiUrl, isLoggedIn }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
@@ -47,7 +46,12 @@ const HappinessFactors = ({ apiUrl }) => {
     setIsLoading(true);
     getFactors("", year, limit)
     .then(data => {
-      setFactors(data);
+      if (data.error) {
+        setError(true);
+        setMessage(data.message);
+      } else {
+        setFactors(data);
+      }
     })
     .catch((error) => {
       console.log(error);
@@ -91,40 +95,46 @@ const HappinessFactors = ({ apiUrl }) => {
       <Container fluid="sm" className="px-3 my-5">
          <Link to="/country-rankings" className="fw-bold">View Country Rankings <span><FontAwesomeIcon icon={faArrowRight} style={{color: "#e0885c",}} /></span></Link>
           <h3 className="mt-3 fw-bold">Happiness Factor Rankings</h3>
-          { error &&  <Alert type="error" message={message || "Unknown Error"}></Alert>}
-          <div className="d-flex justify-content-between">
-            <div className="d-flex flex-column gap-1">
-                <label htmlFor="years">Select a year:</label>
-                <select 
-                  id="years" 
-                  name="years"
-                  className="p-2"
-                  onChange={onYearChanged}
-                >
-                    {yearElements}
-                </select>
-            </div>
-            <div className="d-flex flex-column gap-1">
-                <label htmlFor="limits">Limit results to:</label>
-                <select 
-                  id="limits" 
-                  name="limit"
-                  className="p-2"
-                  onChange={onLimitChanged}
-                >
-                    {limitElements}
-                </select>
-            </div>
-          </div>
-          {isLoading
-            ? <div className="vh-100 d-flex justify-content-center align-items-center"><CustomSpinner message="Loading, please wait..."/></div>
-            : <Col className="mt-5 rounded-3 overflow-hidden">
-                <CustomRow 
-                  data={["Rank", "Country", "Score", "Economy", "Family", "Health", "Freedom", "Generosity", "Trust"]}
-                  styles={{backgroundColor: "hsl(20, 68%, 62%)", fontSize: "0.9rem", fontWeight: "bold"}}
-                />
-                {factorElements}
-              </Col>
+          { isLoggedIn ? 
+            <>
+              { error &&  <Alert type="error" message={message || "Unknown Error"}></Alert>}
+              <div className="d-flex justify-content-between">
+                <div className="d-flex flex-column gap-1">
+                    <label htmlFor="years">Select a year:</label>
+                    <select 
+                      id="years" 
+                      name="years"
+                      className="p-2"
+                      onChange={onYearChanged}
+                    >
+                        {yearElements}
+                    </select>
+                </div>
+                <div className="d-flex flex-column gap-1">
+                    <label htmlFor="limits">Limit results to:</label>
+                    <select 
+                      id="limits" 
+                      name="limit"
+                      className="p-2"
+                      onChange={onLimitChanged}
+                    >
+                        {limitElements}
+                    </select>
+                </div>
+              </div>
+              {isLoading
+                ? <div className="vh-100 d-flex justify-content-center align-items-center"><CustomSpinner message="Loading, please wait..."/></div>
+                : <Col className="mt-5 rounded-3 overflow-hidden">
+                    <CustomRow 
+                      data={["Rank", "Country", "Score", "Economy", "Family", "Health", "Freedom", "Generosity", "Trust"]}
+                      styles={{backgroundColor: "hsl(20, 68%, 62%)", fontSize: "0.9rem", fontWeight: "bold"}}
+                    />
+                    {factorElements}
+                  </Col>
+              }
+            </> 
+            : <p>You have to be logged in to view rankings. Click <Link to="/login" className="fw-bold">here</Link> to login if you already haven an account
+             or register <Link to="/register" className="fw-bold">here</Link></p>
           }
       </Container>
   )

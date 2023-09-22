@@ -66,6 +66,7 @@ const Login = ({ onLoginChanged, apiUrl }) => {
         <Container fluid="sm" className="mt-5 pt-5">
             <Row>
                 <Col sm={12} md={6}>
+                    {/* https://pixabay.com/illustrations/man-car-anime-wallpaper-minimal-7628305/ */}
                     <img src= {loginImg} className="login-img | rounded-5" alt="Background with man"></img>
                 </Col>
                 <Col sm={12} md={6}>
