@@ -16,7 +16,7 @@ const CountryRankings = ({ apiUrl, isLoggedIn }) => {
   const [rankings, setRankings] = useState([]);
   const [limit, setLimit] = useState('0-10');
   const years = [2015, 2016, 2017, 2018, 2019, 2020];
-  const limits = Array.from({ length : 17 }, (_, i) => {return { 'lower': i == 0 ? 0 : i * 10, 'upper': (i + 1) * 10 < 167 ? (i + 1) * 10 : 167}})
+  const limits = Array.from({ length : 17 }, (_, i) => {return { 'lower': i == 0 ? 0 : i * 10, 'upper': (i + 1) * 10 < 166 ? (i + 1) * 10 : 167}})
   
   const groupDataByCountry = (dataset) => {
     const obj = {};

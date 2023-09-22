@@ -54,7 +54,7 @@ const Header = ( { isLoggedIn, onLoginChanged } ) => {
                             </span>
                         </Navbar.Toggle>
                         <Navbar.Collapse id="navbarSupportedContent">
-                            {isLoggedIn && <div className="color-primary | me-3">Welcome <span className="fw-bold">{localStorage.getItem("user")}</span>!</div>}
+                            {isLoggedIn && localStorage.getItem("user") && <div className="color-primary | me-3">Welcome <span className="fw-bold">{localStorage.getItem("user")}</span>!</div>}
                             <Nav className="gap-4">
                                 {isLoggedIn && <HighlightLink onClick={handleLogout}>
                                     Logout

@@ -32,11 +32,6 @@ const HappinessFactors = ({ apiUrl, isLoggedIn }) => {
     })
     .then(res => res.json())
     .then(data => {
-          if (data.error) {
-            setError(true);
-            setMessage(data.message);
-          }
-
           return data;
     })
     .catch((error) => console.log(error));
