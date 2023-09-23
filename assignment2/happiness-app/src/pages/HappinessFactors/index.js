@@ -8,15 +8,17 @@ import CustomSpinner from "../../components/CustomSpinner";
 import CustomRow from "../../components/CustomRow";
 
 const HappinessFactors = ({ apiUrl, isLoggedIn }) => {
+  // const [country, setCountry] = useState("");
+  const [factors, setFactors] = useState([]);
+  const [limit, setLimit] = useState(20);
+  const [page, setPage] = useState('0-20');
+  const [year, setYear] = useState(2015);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
-  const [limit, setLimit] = useState(10);
-  const [year, setYear] = useState(2015);
-  // const [country, setCountry] = useState("");
-  const [factors, setFactors] = useState([]);
   const years = [2015, 2016, 2017, 2018, 2019, 2020];
-  const limits = Array.from({ length: 10 }, (_, i) => {return (i + 1) * 10})
+  const limits = Array.from({ length : 8 }, (_, i) => {return (i + 1) * 20 > 158 ? 158 : (i + 1) * 20})
+  const pagination = Array.from({ length : Math.ceil(limit/20) }, (_, i) => {return { 'lower': i == 0 ? 0 : i * 20, 'upper': (i + 1) * 20 < limit ? (i + 1) * 20 : limit}})
 
   const getFactors = async(c, y, l) => {
     const url = `${apiUrl}/factors/${y}?limit=${l}${c.length > 0 ? `&country=${c}` : ""}`;
@@ -60,10 +62,16 @@ const HappinessFactors = ({ apiUrl, isLoggedIn }) => {
     const { value } = e.target;
     setYear(value);
   }
-
+  
   const onLimitChanged = (e) => {
     const { value } = e.target;
     setLimit(value);
+    setPage('0-20'); // Reset to page 1
+  }
+
+  const onPageChanged = (e) => {
+    const { value } = e.target;
+    setPage(value);
   }
 
   const yearElements = years.map(el => {
@@ -74,7 +82,11 @@ const HappinessFactors = ({ apiUrl, isLoggedIn }) => {
     return <option value={el} style={{color: "hsla(0, 0%, 11%, 0.75)"}}>{el}</option>
   })
 
-  const factorElements = factors.map((el, i) => {
+  const paginationElements = pagination.map(el => {
+    return <option value={`${el['lower']}-${el['upper']}`} style={{color: "hsla(0, 0%, 11%, 0.75)"}}>{`${el['lower'] + 1}-${el['upper']}`}</option>
+  })
+
+  const factorElements = factors.slice(page.split('-')[0], page.split('-')[1]).map((el, i) => {
     const dataElements = [
     el['rank'], el['country'], el['score'], 
     el['economy'], el['family'], el['health'], 
@@ -92,28 +104,44 @@ const HappinessFactors = ({ apiUrl, isLoggedIn }) => {
           <h3 className="mt-3 fw-bold">Happiness Factor Rankings</h3>
           { isLoggedIn ? 
             <>
-              { error &&  <Alert type="error" message={message || "Unknown Error"}></Alert>}
+              { message &&  <Alert type={error ? "error" : "success"} message={message} onClose={() => setMessage("")}></Alert>}
               <div className="d-flex justify-content-between">
-                <div className="d-flex flex-column gap-1">
-                    <label htmlFor="years">Select a year:</label>
-                    <select 
-                      id="years" 
-                      name="years"
-                      className="p-2"
-                      onChange={onYearChanged}
-                    >
-                        {yearElements}
-                    </select>
+                <div className="d-flex gap-3">
+                  <div className="d-flex flex-column gap-1">
+                      <label htmlFor="years">Select a year:</label>
+                      <select 
+                        id="years" 
+                        name="years"
+                        value={year}
+                        className="p-2"
+                        onChange={onYearChanged}
+                      >
+                          {yearElements}
+                      </select>
+                  </div>
+                  <div className="d-flex flex-column gap-1">
+                      <label htmlFor="limit">Limit maximum results to:</label>
+                      <select 
+                        id="limit" 
+                        name="limit"
+                        value={limit}
+                        className="p-2"
+                        onChange={onLimitChanged}
+                      >
+                          {limitElements}
+                      </select>
+                  </div>
                 </div>
                 <div className="d-flex flex-column gap-1">
-                    <label htmlFor="limits">Limit results to:</label>
+                    <label htmlFor="page">Select results from:</label>
                     <select 
-                      id="limits" 
-                      name="limit"
+                      id="page" 
+                      name="page"
+                      value={page}
                       className="p-2"
-                      onChange={onLimitChanged}
+                      onChange={onPageChanged}
                     >
-                        {limitElements}
+                        {paginationElements}
                     </select>
                 </div>
               </div>

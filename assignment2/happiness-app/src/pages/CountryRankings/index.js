@@ -14,9 +14,9 @@ const CountryRankings = ({ apiUrl, isLoggedIn }) => {
   const [country, setCountry] = useState("");
   const [countries, setCountries] = useState([]);
   const [rankings, setRankings] = useState([]);
-  const [limit, setLimit] = useState('0-10');
+  const [page, setPage] = useState('0-20');
   const years = [2015, 2016, 2017, 2018, 2019, 2020];
-  const limits = Array.from({ length : 17 }, (_, i) => {return { 'lower': i == 0 ? 0 : i * 10, 'upper': (i + 1) * 10 < 166 ? (i + 1) * 10 : 167}})
+  const pagination = Array.from({ length : 9 }, (_, i) => {return { 'lower': i == 0 ? 0 : i * 20, 'upper': (i + 1) * 20 < countries.length ? (i + 1) * 20 : countries.length}})
   
   const groupDataByCountry = (dataset) => {
     const obj = {};
@@ -143,24 +143,24 @@ const CountryRankings = ({ apiUrl, isLoggedIn }) => {
     setCountry(value);
   }
 
-  const onLimitChanged = (e) => {
+  const onPageChanged = (e) => {
     const { value } = e.target;
-    setLimit(value);
+    setPage(value);
   }
 
   const countryElements = countries.map(el => {
     return <option value={el} style={{color: "hsla(0, 0%, 11%, 0.75)"}}>{el}</option>
   })
 
-  const limitElements = limits.map(el => {
+  const pageElements = pagination.map(el => {
     return <option value={`${el['lower']}-${el['upper']}`} style={{color: "hsla(0, 0%, 11%, 0.75)"}}>{`${el['lower'] + 1}-${el['upper']}`}</option>
   })
 
-  const rankingsWithinLimit = Object.keys(rankings).length > 1 
-  ? Object.keys(rankings).slice(limit.split('-')[0], limit.split('-')[1]) 
+  const rankingsWithinPage = Object.keys(rankings).length > 1 
+  ? Object.keys(rankings).slice(page.split('-')[0], page.split('-')[1]) 
   :  Object.keys(rankings);
 
-  const rankingElements = rankingsWithinLimit.map((el, i) => {
+  const rankingElements = rankingsWithinPage.map((el, i) => {
     const countryRankings = [el, rankings[el][2015] || 'N/A', rankings[el][2016] || 'N/A', 
     rankings[el][2017] || 'N/A', rankings[el][2018] || 'N/A', 
     rankings[el][2019] || 'N/A', rankings[el][2020] || 'N/A']
@@ -176,7 +176,7 @@ const CountryRankings = ({ apiUrl, isLoggedIn }) => {
         <h3 className="mt-3 fw-bold">Country Rankings</h3>
         { isLoggedIn 
           ? <>
-          { error &&  <Alert type="error" message={message || "Unknown Error"}></Alert>}
+          { error &&  <Alert type="error" message={message || "Unknown Error"} onClose={() => setMessage("")}></Alert>}
           <div className="d-flex justify-content-between">
             <div className="d-flex flex-column gap-1">
                 <label htmlFor="countries">Select a country:</label>
@@ -191,14 +191,14 @@ const CountryRankings = ({ apiUrl, isLoggedIn }) => {
                 </select>
             </div>
             <div className="d-flex flex-column gap-1">
-                    <label htmlFor="limits">Limit results to:</label>
+                    <label htmlFor="pages">Select results from:</label>
                     <select 
-                      id="limits" 
-                      name="limit"
+                      id="pages" 
+                      name="page"
                       className="p-2"
-                      onChange={onLimitChanged}
+                      onChange={onPageChanged}
                     >
-                        {limitElements}
+                        {pageElements}
                     </select>
             </div>
           </div>
