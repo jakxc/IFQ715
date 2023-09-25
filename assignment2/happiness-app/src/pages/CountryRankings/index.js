@@ -16,7 +16,7 @@ const CountryRankings = ({ apiUrl, isLoggedIn }) => {
   const [rankings, setRankings] = useState([]);
   const [page, setPage] = useState('0-20');
   const years = [2015, 2016, 2017, 2018, 2019, 2020];
-  const pagination = Array.from({ length : 9 }, (_, i) => {return { 'lower': i == 0 ? 0 : i * 20, 'upper': (i + 1) * 20 < countries.length ? (i + 1) * 20 : countries.length}})
+  const pagination = Array.from({ length : 9 }, (_, i) => {return { 'lower': i === 0 ? 0 : i * 20, 'upper': (i + 1) * 20 < countries.length ? (i + 1) * 20 : countries.length}})
   
   const groupDataByCountry = (dataset) => {
     const obj = {};

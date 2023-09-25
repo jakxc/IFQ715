@@ -3,3 +3,8 @@
 .cell {
     width: 300px;
 }
+
+.cell:hover {
+    cursor: pointer;
+    opacity: 0.75;
+}

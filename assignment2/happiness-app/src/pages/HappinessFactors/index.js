@@ -18,7 +18,7 @@ const HappinessFactors = ({ apiUrl, isLoggedIn }) => {
   const [message, setMessage] = useState("");
   const years = [2015, 2016, 2017, 2018, 2019, 2020];
   const limits = Array.from({ length : 8 }, (_, i) => {return (i + 1) * 20 > 158 ? 158 : (i + 1) * 20})
-  const pagination = Array.from({ length : Math.ceil(limit/20) }, (_, i) => {return { 'lower': i == 0 ? 0 : i * 20, 'upper': (i + 1) * 20 < limit ? (i + 1) * 20 : limit}})
+  const pagination = Array.from({ length : Math.ceil(limit/20) }, (_, i) => {return { 'lower': i === 0 ? 0 : i * 20, 'upper': (i + 1) * 20 < limit ? (i + 1) * 20 : limit}})
 
   const getFactors = async(c, y, l) => {
     const url = `${apiUrl}/factors/${y}?limit=${l}${c.length > 0 ? `&country=${c}` : ""}`;
