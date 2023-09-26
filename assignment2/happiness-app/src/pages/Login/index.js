@@ -30,7 +30,7 @@ const Login = ({ onLoginChanged, apiUrl }) => {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-
+        
         setMessage("");
         setError(false);
         setIsLoading(true);

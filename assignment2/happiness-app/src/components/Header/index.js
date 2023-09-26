@@ -36,6 +36,7 @@ const Header = ( { isLoggedIn, onLoginChanged } ) => {
 
     const handleLogout = () => {
         localStorage.removeItem("token");
+        localStorage.removeItem("user");
         onLoginChanged(false);
         navigate({ pathname: "/" });
     }

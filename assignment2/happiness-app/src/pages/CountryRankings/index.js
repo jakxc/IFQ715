@@ -176,7 +176,7 @@ const CountryRankings = ({ apiUrl, isLoggedIn }) => {
         <h3 className="mt-3 fw-bold">Country Rankings</h3>
         { isLoggedIn 
           ? <>
-          { error &&  <Alert type="error" message={message || "Unknown Error"} onClose={() => setMessage("")}></Alert>}
+          { error &&  <Alert type="error" message={message} onClose={() => setMessage("")}></Alert>}
           <div className="d-flex justify-content-between">
             <div className="d-flex flex-column gap-1">
                 <label htmlFor="countries">Select a country:</label>
@@ -204,13 +204,15 @@ const CountryRankings = ({ apiUrl, isLoggedIn }) => {
           </div>
           {isLoading
           ? <div className="vh-100 d-flex justify-content-center align-items-center"><CustomSpinner message="Loading, please wait..."/></div>
-          : <Col className="mt-5 rounded-3 overflow-hidden">
+          : rankingElements && rankingElements.length > 0 ? 
+            <Col className="mt-5 rounded-3 overflow-hidden">
               <CustomRow 
                 data={["Country", ...years.map(year => `${year} Ranking`)]}
                 styles={{backgroundColor: "hsl(20, 68%, 62%)", fontSize: "0.9rem", fontWeight: "bold"}}
               />
               {rankingElements}
-            </Col>}
+            </Col>
+            : <div className="color-error | mt-5 fw-bold">Sorry! There are currently no results to display, please try again later.</div>}
           </>
           : <p>You have to be logged in to view rankings. Click <Link to="/login" className="fw-bold">here</Link> to login if you already haven an account
           or register <Link to="/register" className="fw-bold">here</Link></p>

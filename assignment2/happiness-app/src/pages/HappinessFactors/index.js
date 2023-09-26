@@ -17,7 +17,7 @@ const HappinessFactors = ({ apiUrl, isLoggedIn }) => {
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
   const years = [2015, 2016, 2017, 2018, 2019, 2020];
-  const limits = Array.from({ length : 8 }, (_, i) => {return (i + 1) * 20 > 158 ? 158 : (i + 1) * 20})
+  const limits = Array.from({ length : 10 }, (_, i) => {return (i + 1) * 20 > 195 ? 195 : (i + 1) * 20})
   const pagination = Array.from({ length : Math.ceil(limit/20) }, (_, i) => {return { 'lower': i === 0 ? 0 : i * 20, 'upper': (i + 1) * 20 < limit ? (i + 1) * 20 : limit}})
 
   const getFactors = async(c, y, l) => {
@@ -147,13 +147,13 @@ const HappinessFactors = ({ apiUrl, isLoggedIn }) => {
               </div>
               {isLoading
                 ? <div className="vh-100 d-flex justify-content-center align-items-center"><CustomSpinner message="Loading, please wait..."/></div>
-                : <Col className="mt-5 rounded-3 overflow-hidden">
+                : factorElements.length > 0 ? <Col className="mt-5 rounded-3 overflow-hidden">
                     <CustomRow 
                       data={["Rank", "Country", "Score", "Economy", "Family", "Health", "Freedom", "Generosity", "Trust"]}
                       styles={{backgroundColor: "hsl(20, 68%, 62%)", fontSize: "0.9rem", fontWeight: "bold"}}
                     />
                     {factorElements}
-                  </Col>
+                  </Col> : <div className="color-error | mt-5 fw-bold">Sorry! There are currently no results to display on this page, please try again later.</div>
               }
             </> 
             : <p>You have to be logged in to view rankings. Click <Link to="/login" className="fw-bold">here</Link> to login if you already haven an account
