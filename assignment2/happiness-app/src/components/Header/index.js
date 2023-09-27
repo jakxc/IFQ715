@@ -42,21 +42,16 @@ const Header = ( { isLoggedIn, onLoginChanged } ) => {
     }
 
     return (
-        <header className={`header ${scrolled ? "scrolled" : ""}`}>
-            <Container fluid>
-                <Navbar expand="md" className="nav | d-flex justify-content-between align-items-center p-3">
+        <header className={`header p-2 ${scrolled ? "scrolled" : ""}`}>
+            <Navbar expand="md" className="nav">
+                <Container fluid>
                     <HighlightLink to="/"><h4 className="fw-bold">World Happiness Rankings</h4></HighlightLink>
-                    <div className="d-flex justify-content-center"> 
-                        <Navbar.Toggle aria-controls="navbarSupportedContent" className="nav_toggle">
-                            <span>
-                                <FontAwesomeIcon
-                                    icon={faBars} 
-                                />
-                            </span>
+                        <Navbar.Toggle aria-controls="basic-navbar-nav" >
+                            <FontAwesomeIcon icon={faBars} />
                         </Navbar.Toggle>
-                        <Navbar.Collapse id="navbarSupportedContent">
-                            {isLoggedIn && localStorage.getItem("user") && <div className="color-primary | me-3">Welcome <span className="fw-bold">{localStorage.getItem("user")}</span>!</div>}
-                            <Nav className="gap-4">
+                        <Navbar.Collapse id="basic-navbar-nav">
+                            <Nav className="ms-auto d-flex gap-3">
+                                {isLoggedIn && localStorage.getItem("user") && <div className="color-primary">Welcome <span className="fw-bold">{localStorage.getItem("user")}</span>!</div>}
                                 {isLoggedIn && <HighlightLink onClick={handleLogout}>
                                     Logout
                                 </HighlightLink>}
@@ -68,9 +63,8 @@ const Header = ( { isLoggedIn, onLoginChanged } ) => {
                                 </HighlightLink>}
                             </Nav>
                         </Navbar.Collapse>
-                    </div>
+                    </Container>
                 </Navbar>
-            </Container>
         </header>
     )
 }

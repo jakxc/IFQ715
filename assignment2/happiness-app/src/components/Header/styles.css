@@ -13,7 +13,7 @@
     box-shadow: 0 3px 5px 0 hsl(var(--clr-dark));
 }
 
-.nav_toggle {
+.nav button {
+    width: 50px;
     border: none;
-    color: var(-clr-lite) !important;
 }
