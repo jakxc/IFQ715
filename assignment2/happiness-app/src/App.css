@@ -1,11 +1,11 @@
 
 :root {
-  --clr-background: 199, 11%, 33%;
-  --clr-primary: 20, 68%, 62%;
+  --clr-background: 191, 39%, 30%;
+  --clr-primary: 25, 76%, 63%;
   --clr-lite: 0, 0%, 94%;
   --clr-dark: 216, 37%, 16%;
   --clr-success: 85, 55%, 47%;
-  --clr-error: 13, 81%, 49%;
+  --clr-error: 357, 53%, 60%;
   
   --ff-primary: 'Maven Pro', sans-serif;
 }
@@ -24,7 +24,7 @@ a {
 }
 
 a:hover {
-  color: hsla(var(--clr-primary), 0.75) !important;
+  opacity: 0.8;
 }
 
 input {
@@ -95,7 +95,7 @@ button {
 
 button:after {
   content: "";
-  background-color: hsl(var(--clr-primary), 0.75);
+  background-color: hsl(var(--clr-primary), 0.9);
   width: 100%;
   z-index: -1;
   position: absolute;
@@ -145,12 +145,12 @@ button:hover:after {
 
 @keyframes updown {
   0% {
-      transform: translateY(-20px);
+      transform: translateY(-10px);
   }
   50% {
-      transform: translateY(20px);
+      transform: translateY(10px);
   }
   100% {
-      transform: translateY(-20px);
+      transform: translateY(-10px);
   }
 }

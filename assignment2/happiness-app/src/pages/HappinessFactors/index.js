@@ -75,15 +75,15 @@ const HappinessFactors = ({ apiUrl, isLoggedIn }) => {
   }
 
   const yearElements = years.map(el => {
-    return <option value={el} style={{color: "hsla(0, 0%, 11%, 0.75)"}}>{el}</option>
+    return <option value={el} style={{color: "hsl(216, 37%, 16%)"}}>{el}</option>
   })
 
   const limitElements = limits.map(el => {
-    return <option value={el} style={{color: "hsla(0, 0%, 11%, 0.75)"}}>{el}</option>
+    return <option value={el} style={{color: "hsl(216, 37%, 16%)"}}>{el}</option>
   })
 
   const paginationElements = pagination.map(el => {
-    return <option value={`${el['lower']}-${el['upper']}`} style={{color: "hsla(0, 0%, 11%, 0.75)"}}>{`${el['lower'] + 1}-${el['upper']}`}</option>
+    return <option value={`${el['lower']}-${el['upper']}`} style={{color: "hsl(216, 37%, 16%)"}}>{`${el['lower'] + 1}-${el['upper']}`}</option>
   })
 
   const factorElements = factors.slice(page.split('-')[0], page.split('-')[1]).map((el, i) => {
@@ -94,13 +94,13 @@ const HappinessFactors = ({ apiUrl, isLoggedIn }) => {
   ]
     return <CustomRow 
       data={dataElements}
-      styles={{backgroundColor: `${i % 2 ? "hsl(20, 68%, 62%)" : "hsl(20, 68%, 62%, 0.8)"}`, fontSize: "0.75rem"}}
+      styles={{backgroundColor: `${i % 2 ? "hsl(25, 76%, 63%)" : "hsl(25, 76%, 63%, 0.9)"}`, fontSize: "0.75rem"}}
     />
   })
 
   return (
-      <Container fluid="sm" className="px-3 my-5">
-         <Link to="/country-rankings" className="fw-bold">View Country Rankings <span><FontAwesomeIcon icon={faArrowRight} style={{color: "#e0885c",}} /></span></Link>
+      <Container fluid="sm" className="my-5">
+         <Link to="/country-rankings" className="fw-bold">View Country Rankings <span><FontAwesomeIcon icon={faArrowRight} style={{color: "hsl(25, 76%, 63%)"}} /></span></Link>
           <h3 className="mt-3 fw-bold">Happiness Factor Rankings</h3>
           { isLoggedIn ? 
             <>
@@ -150,7 +150,7 @@ const HappinessFactors = ({ apiUrl, isLoggedIn }) => {
                 : factorElements.length > 0 ? <Col className="mt-5 rounded-3 overflow-hidden">
                     <CustomRow 
                       data={["Rank", "Country", "Score", "Economy", "Family", "Health", "Freedom", "Generosity", "Trust"]}
-                      styles={{backgroundColor: "hsl(20, 68%, 62%)", fontSize: "0.9rem", fontWeight: "bold"}}
+                      styles={{backgroundColor: "hsl(25, 76%, 63%)", fontSize: "0.9rem", fontWeight: "bold"}}
                     />
                     {factorElements}
                   </Col> : <div className="color-error | mt-5 fw-bold">Sorry! There are currently no results to display on this page, please try again later.</div>

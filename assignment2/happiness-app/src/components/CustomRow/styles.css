@@ -2,9 +2,10 @@
 
 .cell {
     width: 300px;
+    max-width: 100%;
 }
 
 .cell:hover {
     cursor: pointer;
-    opacity: 0.75;
+    font-weight: bold;
 }

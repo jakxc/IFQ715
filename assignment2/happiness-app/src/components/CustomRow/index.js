@@ -8,7 +8,7 @@ const CustomRow = ({ data, styles }) => {
     })
 
     return (
-        <div className="d-flex justify-content-between gap-2" style={styles}>
+        <div className="d-flex gap-2 overflow-auto" style={styles}>
            {rowElements}
         </div>
     )

@@ -24,6 +24,7 @@ const Home = ({ isLoggedIn }) => {
                 </Col>
                 <Col sm={12} md={6} className='my-auto'>
                     <div className='d-flex justify-content-center'>
+                        {/* https://www.cleanpng.com/png-world-population-day-7775836/ */}
                         <img src={earthImg} alt='Earth' className='img-world anim-hover'/>
                     </div>
                 </Col>

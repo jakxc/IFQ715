@@ -149,11 +149,11 @@ const CountryRankings = ({ apiUrl, isLoggedIn }) => {
   }
 
   const countryElements = countries.map(el => {
-    return <option value={el} style={{color: "hsla(0, 0%, 11%, 0.75)"}}>{el}</option>
+    return <option value={el} style={{color: "hsla(216, 37%, 16%)"}}>{el}</option>
   })
 
   const pageElements = pagination.map(el => {
-    return <option value={`${el['lower']}-${el['upper']}`} style={{color: "hsla(0, 0%, 11%, 0.75)"}}>{`${el['lower'] + 1}-${el['upper']}`}</option>
+    return <option value={`${el['lower']}-${el['upper']}`} style={{color: "hsla(216, 37%, 16%)"}}>{`${el['lower'] + 1}-${el['upper']}`}</option>
   })
 
   const rankingsWithinPage = Object.keys(rankings).length > 1 
@@ -166,13 +166,13 @@ const CountryRankings = ({ apiUrl, isLoggedIn }) => {
     rankings[el][2019] || 'N/A', rankings[el][2020] || 'N/A']
     return <CustomRow 
       data={countryRankings}
-      styles={{backgroundColor: `${i % 2 ? "hsl(20, 68%, 62%)" : "hsl(20, 68%, 62%, 0.8)"}`, fontSize: "0.75rem"}}
+      styles={{backgroundColor: `${i % 2 ? "hsl(25, 76%, 63%)" : "hsl(25, 76%, 63%, 0.9)"}`, fontSize: "0.75rem"}}
     />
   })
 
   return (
-      <Container fluid="sm" className="px-3 my-5">
-        <Link to="/happiness-factors" className="fw-bold">View Happiness Factor Rankings <span><FontAwesomeIcon icon={faArrowRight} style={{color: "#e0885c",}} /></span></Link>
+      <Container fluid="sm" className="my-5">
+        <Link to="/happiness-factors" className="fw-bold">View Happiness Factor Rankings <span><FontAwesomeIcon icon={faArrowRight} style={{color: "hsl(25, 76%, 63%)"}} /></span></Link>
         <h3 className="mt-3 fw-bold">Country Rankings</h3>
         { isLoggedIn 
           ? <>
@@ -186,7 +186,7 @@ const CountryRankings = ({ apiUrl, isLoggedIn }) => {
                   className="p-2"
                   onChange={onCountryChanged}
                 >
-                    <option value="" style={{color: "hsla(0, 0%, 11%, 0.75)"}}>None</option>
+                    <option value="" style={{color: "hsla(216, 37%, 16%)"}}>None</option>
                     {countryElements}
                 </select>
             </div>
@@ -205,10 +205,10 @@ const CountryRankings = ({ apiUrl, isLoggedIn }) => {
           {isLoading
           ? <div className="vh-100 d-flex justify-content-center align-items-center"><CustomSpinner message="Loading, please wait..."/></div>
           : rankingElements && rankingElements.length > 0 ? 
-            <Col className="mt-5 rounded-3 overflow-hidden">
+            <Col className="mt-5 rounded-3 overflow-auto">
               <CustomRow 
                 data={["Country", ...years.map(year => `${year} Ranking`)]}
-                styles={{backgroundColor: "hsl(20, 68%, 62%)", fontSize: "0.9rem", fontWeight: "bold"}}
+                styles={{backgroundColor: "hsl(25, 76%, 63%)", fontSize: "0.9rem", fontWeight: "bold"}}
               />
               {rankingElements}
             </Col>
