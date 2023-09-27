@@ -14,7 +14,7 @@ const CountryRankings = ({ apiUrl, isLoggedIn }) => {
   const [country, setCountry] = useState("");
   const [countries, setCountries] = useState([]);
   const [rankings, setRankings] = useState([]);
-  const [page, setPage] = useState('0-20');
+  const [currentPage, setCurrentPage] = useState('0-20');
   const years = [2015, 2016, 2017, 2018, 2019, 2020];
   const pagination = Array.from({ length : 9 }, (_, i) => {return { 'lower': i === 0 ? 0 : i * 20, 'upper': (i + 1) * 20 < countries.length ? (i + 1) * 20 : countries.length}})
   
@@ -145,7 +145,7 @@ const CountryRankings = ({ apiUrl, isLoggedIn }) => {
 
   const onPageChanged = (e) => {
     const { value } = e.target;
-    setPage(value);
+    setCurrentPage(value);
   }
 
   const countryElements = countries.map(el => {
@@ -157,7 +157,7 @@ const CountryRankings = ({ apiUrl, isLoggedIn }) => {
   })
 
   const rankingsWithinPage = Object.keys(rankings).length > 1 
-  ? Object.keys(rankings).slice(page.split('-')[0], page.split('-')[1]) 
+  ? Object.keys(rankings).slice(currentPage.split('-')[0], currentPage.split('-')[1]) 
   :  Object.keys(rankings);
 
   const rankingElements = rankingsWithinPage.map((el, i) => {

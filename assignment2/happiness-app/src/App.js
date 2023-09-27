@@ -20,12 +20,12 @@ function App() {
 
   return (
     <Router>
-      <div className="app">
+      <div className="app | d-flex flex-column">
         <Header isLoggedIn={isLoggedIn} onLoginChanged={setIsLoggedIn}/>
         <Routes>
           <Route path="/" element={<Home isLoggedIn={isLoggedIn}/>} />
           <Route path="/register" element={<Register apiUrl={API_URL} />} />
-          <Route path="/login" element={<Login apiUrl={API_URL} onLoginChanged={setIsLoggedIn}/>} />
+          <Route path="/login" element={<Login apiUrl={API_URL} isLoggedIn={isLoggedIn} onLoginChanged={setIsLoggedIn} />} />
           <Route path="/country-rankings" element={<CountryRankings apiUrl={API_URL} isLoggedIn={isLoggedIn} /> } />
           <Route path="/happiness-factors" element={<HappinessFactors apiUrl={API_URL} isLoggedIn={isLoggedIn} />} />
           <Route path="*" element={<NotFound />} />

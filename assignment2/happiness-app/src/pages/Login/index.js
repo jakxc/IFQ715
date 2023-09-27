@@ -6,7 +6,7 @@ import CustomSpinner from "../../components/CustomSpinner";
 import loginImg from "../../assets/man-img.jpg"
 import "./styles.css"
 
-const Login = ({ onLoginChanged, apiUrl }) => {
+const Login = ({  apiUrl, isLoggedIn, onLoginChanged }) => {
     const [formData, setFormData] = useState({
         email: "",
         password: ""
@@ -70,38 +70,42 @@ const Login = ({ onLoginChanged, apiUrl }) => {
                     <img src= {loginImg} className="login-img | rounded-5" alt="Background with man"></img>
                 </Col>
                 <Col sm={12} md={6}>
-                    <h3 className="color-primary">Log In</h3>
-                    {isLoading && <div className="d-flex justify-content-start my-2"><CustomSpinner /></div>}
-                    {message && <Alert type={error ? "error" : "success"} message={message} onClose={() => setMessage("")} />}
-                    <form className="d-flex flex-column gap-3">
-                        <div className="d-flex flex-column">
-                            <label className="form-label" htmlFor="emailInput">Email address</label>
-                            <input 
-                                type="email" 
-                                id="emailInput" 
-                                placeholder="Enter email address" 
-                                name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div className="d-flex flex-column">
-                            <label className="form-label" htmlFor="passwordInput">Password</label>
-                            <input 
-                                type="password" 
-                                id="passwordInput" 
-                                placeholder="Enter password" 
-                                name="password"
-                                value={formData.password}
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div className="text-center text-lg-start pt-2">
-                            <button className="fw-bold" onClick={handleLogin}>Login</button>
-                            <p className="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <Link className="color-primary" 
-                            to="/register">Register here</Link></p> 
-                        </div>
-                    </form>
+                    {!isLoggedIn 
+                    ? <>
+                        <h3 className="color-primary">Log In</h3>
+                        {isLoading && <div className="d-flex justify-content-start my-2"><CustomSpinner /></div>}
+                        {message && <Alert type={error ? "error" : "success"} message={message} onClose={() => setMessage("")} />}
+                        <form className="d-flex flex-column gap-3">
+                            <div className="d-flex flex-column">
+                                <label className="form-label" htmlFor="emailInput">Email address</label>
+                                <input 
+                                    type="email" 
+                                    id="emailInput" 
+                                    placeholder="Enter email address" 
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div className="d-flex flex-column">
+                                <label className="form-label" htmlFor="passwordInput">Password</label>
+                                <input 
+                                    type="password" 
+                                    id="passwordInput" 
+                                    placeholder="Enter password" 
+                                    name="password"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div className="text-center text-lg-start pt-2">
+                                <button className="fw-bold" onClick={handleLogin}>Login</button>
+                                <p className="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <Link className="color-primary" 
+                                to="/register">Register here</Link></p> 
+                            </div>
+                        </form>
+                    </>
+                    : <div className="color-error | mt-5 fw-bold">You are already logged in to an account. Please log out first before logging into another account.</div>}
                 </Col>
             </Row> 
         </Container>

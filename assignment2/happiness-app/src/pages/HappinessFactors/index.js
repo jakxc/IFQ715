@@ -11,7 +11,7 @@ const HappinessFactors = ({ apiUrl, isLoggedIn }) => {
   // const [country, setCountry] = useState("");
   const [factors, setFactors] = useState([]);
   const [limit, setLimit] = useState(20);
-  const [page, setPage] = useState('0-20');
+  const [currentPage, setCurrentPage] = useState('0-20');
   const [year, setYear] = useState(2015);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -66,12 +66,12 @@ const HappinessFactors = ({ apiUrl, isLoggedIn }) => {
   const onLimitChanged = (e) => {
     const { value } = e.target;
     setLimit(value);
-    setPage('0-20'); // Reset to page 1
+    setCurrentPage('0-20'); // Reset to page 1
   }
 
   const onPageChanged = (e) => {
     const { value } = e.target;
-    setPage(value);
+    setCurrentPage(value);
   }
 
   const yearElements = years.map(el => {
@@ -86,7 +86,7 @@ const HappinessFactors = ({ apiUrl, isLoggedIn }) => {
     return <option value={`${el['lower']}-${el['upper']}`} style={{color: "hsl(216, 37%, 16%)"}}>{`${el['lower'] + 1}-${el['upper']}`}</option>
   })
 
-  const factorElements = factors.slice(page.split('-')[0], page.split('-')[1]).map((el, i) => {
+  const factorElements = factors.slice(currentPage.split('-')[0], currentPage.split('-')[1]).map((el, i) => {
     const dataElements = [
     el['rank'], el['country'], el['score'], 
     el['economy'], el['family'], el['health'], 
@@ -137,7 +137,7 @@ const HappinessFactors = ({ apiUrl, isLoggedIn }) => {
                     <select 
                       id="page" 
                       name="page"
-                      value={page}
+                      value={currentPage}
                       className="p-2"
                       onChange={onPageChanged}
                     >

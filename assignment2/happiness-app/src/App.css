@@ -114,8 +114,6 @@ button:hover:after {
   min-height: 100vh;
   padding-top: 75px;
   scroll-behavior: smooth;
-  display: flex;
-  flex-direction: column;
 }
 
 /* Util classes */
