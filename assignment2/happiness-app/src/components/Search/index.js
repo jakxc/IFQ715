@@ -13,16 +13,18 @@ const Search = ({ placeholder, onSubmit, dataList }) => {
 
     return (
         <div className="search">
-            <input 
-                type="text" 
-                placeholder={placeholder}
-                name="search"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                list={dataList ? dataList : ""}
-                className="search_input"
-            />
-            <FontAwesomeIcon icon={faSearch} className="search_icon" onClick={handleSubmit}/>
+            <form onSubmit={handleSubmit}>
+                <input 
+                    type="text" 
+                    placeholder={placeholder}
+                    name="search"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    list={dataList ? dataList : ""}
+                    className="search_input"
+                />
+                <FontAwesomeIcon icon={faSearch} className="search_icon" onClick={handleSubmit}/>
+            </form>
         </div>
     )
 }

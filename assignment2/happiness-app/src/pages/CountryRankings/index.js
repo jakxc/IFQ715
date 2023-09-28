@@ -58,7 +58,7 @@ const CountryRankings = ({ apiUrl, isLoggedIn }) => {
     .catch((error) => console.log(error));
   }
 
-  const getCountryRankings = async (q = "") => {
+  const getCountryRankings = async () => {
     const token = localStorage.getItem("token");
     const url = `${apiUrl}/rankings`;
     
@@ -97,7 +97,7 @@ const CountryRankings = ({ apiUrl, isLoggedIn }) => {
 
   useEffect(() => {
     setIsLoading(true);
-    getCountryRankings(query)
+    getCountryRankings()
     .then(data => {
       if (data.error) {
         setError(true);
@@ -125,8 +125,7 @@ const CountryRankings = ({ apiUrl, isLoggedIn }) => {
     const filteredResults = Object.keys(rankings).filter(el => el.toLowerCase().startsWith(query.toLowerCase()));
     setPagination(Array.from({ length : Math.ceil(filteredResults.length / 20) }, (_, i) => {return { 'lower': i === 0 ? 0 : i * 20, 'upper': (i + 1) * 20 < filteredResults.length ? (i + 1) * 20 : filteredResults.length}}))
     setCurrentPage(`0-${filteredResults.length > 20 ? 20 : filteredResults.length}`)
-  }, [query])
-
+  }, [rankings, query])
 
   const onPageChanged = (e) => {
     const { value } = e.target;
@@ -137,10 +136,11 @@ const CountryRankings = ({ apiUrl, isLoggedIn }) => {
     return <option value={el} style={{color: "hsla(216, 37%, 16%)"}}>{el}</option>
   })
 
-  const filteredRankings = Object.keys(rankings).filter(el => el.toLowerCase().startsWith(query.toLowerCase()));
   const pageElements = pagination.map(el => {
     return <option value={`${el['lower']}-${el['upper']}`} style={{color: "hsla(216, 37%, 16%)"}}>{`${el['lower'] + 1}-${el['upper']}`}</option>
   })
+
+  const filteredRankings = Object.keys(rankings).filter(el => el.toLowerCase().startsWith(query.toLowerCase()));
   const rankingsWithinPage = filteredRankings.length > currentPage.split('-')[0]
   ? filteredRankings.slice(currentPage.split('-')[0], currentPage.split('-')[1]) 
   :  filteredRankings;
@@ -171,7 +171,6 @@ const CountryRankings = ({ apiUrl, isLoggedIn }) => {
                 name="countries"
                 className="p-2"
               >
-                  <option value="" style={{color: "hsla(216, 37%, 16%)"}}>None</option>
                   {countryElements}
               </datalist>
             </div>
@@ -198,7 +197,7 @@ const CountryRankings = ({ apiUrl, isLoggedIn }) => {
               />
               {rankingElements}
             </Col>
-            : <div className="color-error | mt-5 fw-bold">Sorry! There are currently no results to display, please try again later.</div>}
+            : <div className="color-error | mt-5 fw-bold">Sorry! There are no results to display, please try again.</div>}
           </>
           : <p>You have to be logged in to view rankings. Click <Link to="/login" className="fw-bold">here</Link> to login if you already haven an account
           or register <Link to="/register" className="fw-bold">here</Link></p>
