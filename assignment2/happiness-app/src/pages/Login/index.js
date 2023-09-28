@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Container, Col, Row } from "react-bootstrap";
 import Alert from "../../components/Alert";
-import CustomSpinner from "../../components/CustomSpinner";
+import Spinner from "../../components/Spinner";
 import loginImg from "../../assets/man-img.jpg"
 import "./styles.css"
 
@@ -73,7 +73,7 @@ const Login = ({  apiUrl, isLoggedIn, onLoginChanged }) => {
                     {!isLoggedIn 
                     ? <>
                         <h3 className="color-primary">Log In</h3>
-                        {isLoading && <div className="d-flex justify-content-start my-2"><CustomSpinner /></div>}
+                        {isLoading && <div className="d-flex justify-content-start my-2"><Spinner /></div>}
                         {message && <Alert type={error ? "error" : "success"} message={message} onClose={() => setMessage("")} />}
                         <form className="d-flex flex-column gap-3">
                             <div className="d-flex flex-column">

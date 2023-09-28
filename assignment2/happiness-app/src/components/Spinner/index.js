@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 
-const CustomSpinner = ({ message }) => {
+const Spinner = ({ message }) => {
     return (
         <div className='d-flex flex-column align-items-center gap-2'>
             <FontAwesomeIcon icon={faSpinner} spin size="2xl" style={{color: "#e0885c",}} />
@@ -10,4 +10,4 @@ const CustomSpinner = ({ message }) => {
     )
 }
 
-export default CustomSpinner
+export default Spinner

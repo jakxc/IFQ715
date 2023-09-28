@@ -1,0 +1,21 @@
+@import "../../App.css";
+
+.search {
+    position: relative;
+}
+
+.search_input {
+    padding-right: 35px;
+}
+
+.search_icon {
+    position: absolute;
+    right: 0;
+    top: 8px;
+    padding: 10px 15px;
+    color: hsl(var(--clr-dark));
+}
+
+.search_icon:hover {
+    color: hsl(var(--clr-primary)) !important;
+}

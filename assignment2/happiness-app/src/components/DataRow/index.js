@@ -1,6 +1,6 @@
 import "./styles.css";
 
-const CustomRow = ({ data, styles }) => {
+const DataRow = ({ data, styles }) => {
     const rowElements = data.map((el, i) => {
         return <div 
             key={i} 
@@ -14,4 +14,4 @@ const CustomRow = ({ data, styles }) => {
     )
 }
 
-export default CustomRow;
+export default DataRow;

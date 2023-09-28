@@ -3,20 +3,22 @@ import { Link } from "react-router-dom";
 import { Container, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import Search from "../../components/Search";
 import Alert from "../../components/Alert";
-import CustomRow from "../../components/CustomRow";
-import CustomSpinner from "../../components/CustomSpinner";
+import DataRow from "../../components/DataRow";
+import Spinner from "../../components/Spinner";
 
 const CountryRankings = ({ apiUrl, isLoggedIn }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
-  const [country, setCountry] = useState("");
+  const [query, setQuery] = useState("");
   const [countries, setCountries] = useState([]);
   const [rankings, setRankings] = useState([]);
+  const [pagination, setPagination] = useState([]);
   const [currentPage, setCurrentPage] = useState('0-20');
   const years = [2015, 2016, 2017, 2018, 2019, 2020];
-  const pagination = Array.from({ length : 9 }, (_, i) => {return { 'lower': i === 0 ? 0 : i * 20, 'upper': (i + 1) * 20 < countries.length ? (i + 1) * 20 : countries.length}})
+  
   
   const groupDataByCountry = (dataset) => {
     const obj = {};
@@ -56,44 +58,23 @@ const CountryRankings = ({ apiUrl, isLoggedIn }) => {
     .catch((error) => console.log(error));
   }
 
-  const getCountryRankings = async (c = "") => {
+  const getCountryRankings = async (q = "") => {
     const token = localStorage.getItem("token");
-    if (c.length > 0) {
-        const url = `${apiUrl}/rankings?country=${c}`;
-        
-        return fetch(url, {
-          method: "GET", // *GET, POST, PUT, DELETE, etc.
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`,
-            "X-API-KEY": "EzensCqxyl63t09mVG6jr2AXriDQeimS95s4CdpV"
-          }
-        })      
-        .then(res => res.json())
-        .then(data => {
-          if (data.error) {
-            setError(true);
-            setMessage(data.message);
-          }
-          return data;
-        })
-      } else {
-        const url = `${apiUrl}/rankings`;
-        
-        return fetch(url, {
-          method: "GET", // *GET, POST, PUT, DELETE, etc.
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`,
-            "X-API-KEY": "EzensCqxyl63t09mVG6jr2AXriDQeimS95s4CdpV"
-          }
-        })
-      .then(res => res.json())
-      .then(data => {
-          return data;
-        })
+    const url = `${apiUrl}/rankings`;
+    
+    return fetch(url, {
+      method: "GET", // *GET, POST, PUT, DELETE, etc.
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
+        "X-API-KEY": "EzensCqxyl63t09mVG6jr2AXriDQeimS95s4CdpV"
       }
-    }
+    })
+    .then(res => res.json())
+    .then(data => {
+        return data;
+    })
+  }
 
   useEffect(() => {
     setIsLoading(true);
@@ -116,7 +97,7 @@ const CountryRankings = ({ apiUrl, isLoggedIn }) => {
 
   useEffect(() => {
     setIsLoading(true);
-    getCountryRankings(country)
+    getCountryRankings(query)
     .then(data => {
       if (data.error) {
         setError(true);
@@ -127,7 +108,9 @@ const CountryRankings = ({ apiUrl, isLoggedIn }) => {
         ? 0 
         : a['country'] > b['country'] ? 1 : -1)
         const temp = groupDataByCountry(sortedData);
+        const keys = Object.keys(temp);
         setRankings(temp);
+        setPagination(Array.from({ length : Math.ceil(keys.length / 20) }, (_, i) => {return { 'lower': i === 0 ? 0 : i * 20, 'upper': (i + 1) * 20 < keys.length ? (i + 1) * 20 : keys.length}}))
       }
     })
     .catch((error) => {
@@ -136,12 +119,14 @@ const CountryRankings = ({ apiUrl, isLoggedIn }) => {
     .finally(() => {
       setIsLoading(false);
     })
-  }, [country]);
+  }, []);
 
-  const onCountryChanged = (e) => {
-    const { value } = e.target;
-    setCountry(value);
-  }
+  useEffect(() => {
+    const filteredResults = Object.keys(rankings).filter(el => el.toLowerCase().startsWith(query.toLowerCase()));
+    setPagination(Array.from({ length : Math.ceil(filteredResults.length / 20) }, (_, i) => {return { 'lower': i === 0 ? 0 : i * 20, 'upper': (i + 1) * 20 < filteredResults.length ? (i + 1) * 20 : filteredResults.length}}))
+    setCurrentPage(`0-${filteredResults.length > 20 ? 20 : filteredResults.length}`)
+  }, [query])
+
 
   const onPageChanged = (e) => {
     const { value } = e.target;
@@ -152,19 +137,19 @@ const CountryRankings = ({ apiUrl, isLoggedIn }) => {
     return <option value={el} style={{color: "hsla(216, 37%, 16%)"}}>{el}</option>
   })
 
+  const filteredRankings = Object.keys(rankings).filter(el => el.toLowerCase().startsWith(query.toLowerCase()));
   const pageElements = pagination.map(el => {
     return <option value={`${el['lower']}-${el['upper']}`} style={{color: "hsla(216, 37%, 16%)"}}>{`${el['lower'] + 1}-${el['upper']}`}</option>
   })
-
-  const rankingsWithinPage = Object.keys(rankings).length > 1 
-  ? Object.keys(rankings).slice(currentPage.split('-')[0], currentPage.split('-')[1]) 
-  :  Object.keys(rankings);
+  const rankingsWithinPage = filteredRankings.length > currentPage.split('-')[0]
+  ? filteredRankings.slice(currentPage.split('-')[0], currentPage.split('-')[1]) 
+  :  filteredRankings;
 
   const rankingElements = rankingsWithinPage.map((el, i) => {
     const countryRankings = [el, rankings[el][2015] || 'N/A', rankings[el][2016] || 'N/A', 
     rankings[el][2017] || 'N/A', rankings[el][2018] || 'N/A', 
     rankings[el][2019] || 'N/A', rankings[el][2020] || 'N/A']
-    return <CustomRow 
+    return <DataRow 
       data={countryRankings}
       styles={{backgroundColor: `${i % 2 ? "hsl(25, 76%, 63%)" : "hsl(25, 76%, 63%, 0.9)"}`, fontSize: "0.75rem"}}
     />
@@ -179,34 +164,35 @@ const CountryRankings = ({ apiUrl, isLoggedIn }) => {
           { error &&  <Alert type="error" message={message} onClose={() => setMessage("")}></Alert>}
           <div className="d-flex justify-content-between">
             <div className="d-flex flex-column gap-1">
-                <label htmlFor="countries">Select a country:</label>
-                <select 
-                  id="country" 
-                  name="country"
-                  className="p-2"
-                  onChange={onCountryChanged}
-                >
-                    <option value="" style={{color: "hsla(216, 37%, 16%)"}}>None</option>
-                    {countryElements}
-                </select>
+              <label htmlFor="countries">Select a country:</label>
+              <Search placeholder="Search..." dataList="countries" onSubmit={(myQuery) => setQuery(myQuery)} />
+              <datalist 
+                id="countries" 
+                name="countries"
+                className="p-2"
+              >
+                  <option value="" style={{color: "hsla(216, 37%, 16%)"}}>None</option>
+                  {countryElements}
+              </datalist>
             </div>
             <div className="d-flex flex-column gap-1">
-                    <label htmlFor="pages">Select results from:</label>
-                    <select 
-                      id="pages" 
-                      name="page"
-                      className="p-2"
-                      onChange={onPageChanged}
-                    >
-                        {pageElements}
-                    </select>
+              <label htmlFor="pages">Select results from:</label>
+              <select 
+                id="pages" 
+                name="page"
+                value={currentPage}
+                className="p-2"
+                onChange={onPageChanged}
+              >
+                  {pageElements}
+              </select>
             </div>
           </div>
           {isLoading
-          ? <div className="vh-100 d-flex justify-content-center align-items-center"><CustomSpinner message="Loading, please wait..."/></div>
+          ? <div className="vh-100 d-flex justify-content-center align-items-center"><Spinner message="Loading, please wait..."/></div>
           : rankingElements && rankingElements.length > 0 ? 
             <Col className="mt-5 rounded-3 overflow-auto">
-              <CustomRow 
+              <DataRow 
                 data={["Country", ...years.map(year => `${year} Ranking`)]}
                 styles={{backgroundColor: "hsl(25, 76%, 63%)", fontSize: "0.9rem", fontWeight: "bold"}}
               />

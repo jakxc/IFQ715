@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Container, Col, Row } from "react-bootstrap";
 import Alert from "../../components/Alert";
-import CustomSpinner from "../../components/CustomSpinner";
+import Spinner from "../../components/Spinner";
 import registerImg from "../../assets/sunset-img.jpg"
 import "./styles.css"
 
@@ -66,7 +66,7 @@ const Register = ({ apiUrl }) => {
                 </Col>
                 <Col sm={12} md={6}>
                     <h3 className="color-primary">Create your account</h3>
-                    {isLoading && <div className="d-flex justify-content-start my-2"><CustomSpinner /></div>}
+                    {isLoading && <div className="d-flex justify-content-start my-2"><Spinner /></div>}
                     {message && <Alert type={error ? "error" : "success"} message={message} onClose={() => setMessage("")} />}
                     <form className="d-flex flex-column gap-3">
                     <div className="d-flex flex-column">

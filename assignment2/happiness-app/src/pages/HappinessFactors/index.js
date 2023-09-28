@@ -4,15 +4,15 @@ import { Container, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import Alert from "../../components/Alert";
-import CustomSpinner from "../../components/CustomSpinner";
-import CustomRow from "../../components/CustomRow";
+import Spinner from "../../components/Spinner";
+import DataRow from "../../components/DataRow";
 
 const HappinessFactors = ({ apiUrl, isLoggedIn }) => {
   // const [country, setCountry] = useState("");
   const [factors, setFactors] = useState([]);
+  const [year, setYear] = useState(2015);
   const [limit, setLimit] = useState(20);
   const [currentPage, setCurrentPage] = useState('0-20');
-  const [year, setYear] = useState(2015);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
@@ -92,7 +92,7 @@ const HappinessFactors = ({ apiUrl, isLoggedIn }) => {
     el['economy'], el['family'], el['health'], 
     el['freedom'], el['generosity'], el['trust']
   ]
-    return <CustomRow 
+    return <DataRow 
       data={dataElements}
       styles={{backgroundColor: `${i % 2 ? "hsl(25, 76%, 63%)" : "hsl(25, 76%, 63%, 0.9)"}`, fontSize: "0.75rem"}}
     />
@@ -146,9 +146,9 @@ const HappinessFactors = ({ apiUrl, isLoggedIn }) => {
                 </div>
               </div>
               {isLoading
-                ? <div className="vh-100 d-flex justify-content-center align-items-center"><CustomSpinner message="Loading, please wait..."/></div>
+                ? <div className="vh-100 d-flex justify-content-center align-items-center"><Spinner message="Loading, please wait..."/></div>
                 : factorElements.length > 0 ? <Col className="mt-5 rounded-3 overflow-hidden">
-                    <CustomRow 
+                    <DataRow 
                       data={["Rank", "Country", "Score", "Economy", "Family", "Health", "Freedom", "Generosity", "Trust"]}
                       styles={{backgroundColor: "hsl(25, 76%, 63%)", fontSize: "0.9rem", fontWeight: "bold"}}
                     />
