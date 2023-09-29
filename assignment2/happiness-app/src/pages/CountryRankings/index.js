@@ -163,7 +163,7 @@ const CountryRankings = ({ apiUrl, isLoggedIn }) => {
           ? <>
           { error &&  <Alert type="error" message={message} onClose={() => setMessage("")}></Alert>}
           <div className="d-flex justify-content-between">
-            <div className="d-flex flex-column gap-1">
+            <div className="d-flex flex-column gap-1 me-5">
               <label htmlFor="countries">Select a country:</label>
               <Search placeholder="Search..." dataList="countries" onSubmit={(myQuery) => setQuery(myQuery)} />
               <datalist 

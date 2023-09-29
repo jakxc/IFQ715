@@ -106,7 +106,7 @@ const HappinessFactors = ({ apiUrl, isLoggedIn }) => {
             <>
               { message &&  <Alert type={error ? "error" : "success"} message={message} onClose={() => setMessage("")}></Alert>}
               <div className="d-flex justify-content-between">
-                <div className="d-flex gap-3">
+                <div className="d-flex gap-3 me-5">
                   <div className="d-flex flex-column gap-1">
                       <label htmlFor="years">Select a year:</label>
                       <select 

@@ -17,7 +17,7 @@ const Home = ({ isLoggedIn }) => {
                         each report has contributing authors that focus on particular themes (economy, family, health, freedom, generosity, trust). 
                         The data used to rank countries of each of these themes are gathered from various polls and surveys such as the Gallup World Poll and World Values Survey. 
                     </p>
-                    { isLoggedIn ? <div className='d-flex gap-4'>
+                    { isLoggedIn ? <div className='d-flex flex-column flex-md-row gap-4'>
                         <Link to="/country-rankings"><button className='fw-bold'>Country Rankings</button></Link>
                         <Link to="/happiness-factors"><button className='fw-bold'>Happiness Factors</button></Link>
                     </div> : <Link to='/login' className='color-primary | fw-bold'>Log in to view rankings.</Link> }
