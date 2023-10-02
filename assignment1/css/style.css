@@ -1,12 +1,12 @@
 @charset "utf-8";
 
 :root {
-    --main-bg-color: #F8EDE3;
-    --primary-color: #BDD2B6;
-    --secondary-color: #798777;
-    --nav-color: #272829;
+    --clr-bg: 29, 60%, 93%;
+    --clr-primary: 105, 24%, 77%;
+    --clr-secondary: 113, 6%, 50%;
+    --clr-dark: 210, 3%, 16%;
 
-    --primary-font: 'Maven Pro', sans-serif;
+    --font-primary: 'Maven Pro', sans-serif;
 }
   
 
@@ -61,33 +61,103 @@ input[type=number] {
 }
 
 body {
-    background-color: var(--main-bg-color);
-    font-family: var(--primary-font);
+    background-color: hsl(var(--clr-bg));
+    font-family: var(--font-primasry);
 }
 
 a {
     text-decoration: none;
 }
 
-/* Utility Classes */
+/* Utils */
+.btn-primary {
+  align-items: center;
+  background-clip: padding-box;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  height: 45px;
+  padding: 15px;
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: hsl(var(--clr-primary), 0.75);
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+  transform: translateY(0);
+}
+
+.search {
+    position: relative;
+    padding: 15px;
+    width: 500px;
+    max-width: 100%;
+    height: 45px;
+    border-radius: 4px;
+    line-height: 1.25;
+    display: flex;
+    align-items: center;
+}
+
+.search_input::placeholder{
+    opacity: 0.75;
+}
+
+.search_icon {
+    position: absolute;
+    right: 0;
+    top: 5px;
+    padding: 10px 15px;
+    color: hsl(var(--clr-dark));
+    transition:  0.2s ease-in-out;
+}
+
+.search_icon:hover {
+    color: hsl(var(--clr-primary)) !important;
+}
+
 .primary-color {
-    color: var(--primary-color);
+    color: hsl(var(--clr-primary));
 }
 
 .secondary-color {
-    color: var(--secondary-color);
+    color: hsl(var(--clr-secondary));
 }
 
 .primary-background {
-    background-color: var(--primary-color);
+    background-color: hsl(var(--clr-primary));
 }
 
 .secondary-background {
-    background-color: var(--secondary-color);
+    background-color: hsl(var(--clr-secondary));
 }
 
 .nav-background {
-    background-color: var(--nav-color);
+    background-color: hsl(var(--clr-dark));
 }
 
 /* Landing Page */
@@ -97,7 +167,7 @@ a {
 }
 
 .category-item {
-    border: 1px solid #000000
+    border: 1px solid hsl(var(--clr-dark));
 }
 
 /* Product Page */
@@ -124,7 +194,7 @@ a {
 .image-box {
     min-height: 100px;
     min-width: 100px;
-    border: 1px solid #000000; 
+    border: 1px solid hsl(var(--clr-dark)); 
 }
 
  
