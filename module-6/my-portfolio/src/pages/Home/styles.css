@@ -3,7 +3,7 @@
 .profile-frame {
     height: 400px;
     width: 300px;
-    border: 1px solid var(--primary-color);
+    border: 1px solid hsl(var(--clr-primary));
     border-radius: 20px;
     overflow: hidden;
 }

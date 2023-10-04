@@ -1,16 +1,16 @@
 @import "../../App.css";
 
-nav a {
-    color: var(--primary-color);
-}
+.nav_link {
+    transition:  0.2s ease-in-out;
+} 
 
-nav a:hover {
-    color: var(--text-color-lite);
+.nav_link:hover {
+    scale: 1.2;
 }
 
 .nav_toggle {
     border: none;
-    color: var(--text-color-lite) !important;
+    color: hsl(var(--clr-lite)) !important;
 }
 
 .social-icon a {
@@ -18,7 +18,7 @@ nav a:hover {
     height: 42px;
     border-radius: 50%;
     line-height: 1;
-    border: 1px solid var(--text-color-lite);
+    border: 1px solid hsl(var(--clr-lite));
 }
 
 .social-icon a::before {
@@ -26,8 +26,8 @@ nav a:hover {
     width: 42px;
     height: 42px;
     position: absolute;
-    color: var(--text-color-dark);
-    background-color: var(--primary-color);
+    color: hsl(var(--clr-dark));
+    background-color: hsl(var(--clr-primary));
     border-radius: 50%;
     transform: scale(0);
 	transition: 0.3s ease-in-out;

@@ -10,11 +10,11 @@ import "./styles.css"
 const HighlightLink = (props) => {
     return <NavLink 
                 {...props}
-                className="fw-bold"
                 style={({ isActive }) => ({
-                    color: isActive ? 'rgb(228, 228, 228)' : 'rgb(224, 136, 92)',
-                  })}
-            />;
+                    color: isActive ? 'hsl(0, 52%, 43%)' : 'hsl(0, 0%, 89%)'
+                })}
+            />
+     
 }
 
 const Header = () => {
@@ -32,15 +32,21 @@ const Header = () => {
                     </Navbar.Toggle>
                     <Navbar.Collapse id="navbarSupportedContent" className="pt-2">
                         <Nav className="gap-3 me-auto">
-                            <HighlightLink to="/">
-                                Home
-                            </HighlightLink>
-                            <HighlightLink to="/portfolio">
-                                Portfolio
-                            </HighlightLink>
-                            <HighlightLink to="/contact">
-                                Contact Me
-                            </HighlightLink>
+                            <div className="nav_link" title="Home">
+                                <HighlightLink to="/">
+                                    Home
+                                </HighlightLink>
+                            </div>
+                            <div className="nav_link" title="Portfolio">
+                                <HighlightLink to="/portfolio">
+                                    Portfolio
+                                </HighlightLink>
+                            </div>
+                            <div className="nav_link" title="Contact">
+                                <HighlightLink to="/contact">
+                                    Contact
+                                </HighlightLink>
+                            </div>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>

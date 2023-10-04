@@ -9,8 +9,8 @@ const Home = () => {
             <Row>
                 <Col sm={12} md={8} className="gap-2 mb-3">
                     <h2>
-                        Hello, my name is <span className="primary-color | fw-bolder">Jack</span>. 
-                        I am a <span className="primary-color | fw-bold">
+                        Hello, my name is <span className="color-primary | fw-bolder">Jack</span>. 
+                        I am a <span className="color-primary | fw-bold">
                         <Typewriter
                             options={{
                                 strings: ['Full Stack Web Developer', 'UX Designer', 'Front End Developer'],
@@ -19,7 +19,7 @@ const Home = () => {
                             }}
                         /></span> with a keen interest in web development and UX Design.
                     </h2>
-                    <button type="button" className="primary-background text-dark | btn fw-bold">Contact Me</button>
+                    <button type="button" className="btn-primary">Contact Me</button>
                 </Col>
                 <Col sm={12} md={4}>
                     <div className="profile-frame | mx-auto">
