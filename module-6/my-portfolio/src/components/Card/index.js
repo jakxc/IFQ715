@@ -1,22 +1,21 @@
-import Card from 'react-bootstrap/Card';
-import "./styles.css"
+import "./styles.css";
+import Typewriter from "typewriter-effect";
 import test from "../../assets/profile.jpg"
 
 const ProjectCard = () => {
     return (
         <div className="card">
-            <img 
-                src={test}
-                className="card_img"
-                alt="portfolio" 
-            />
-            <div className="card_content">
-                <h3 className="card_title">Card Name</h3>
-                <p className="card_description">Card Disc</p>
-                <button
-                    className="primary-background text-dark | btn fw-bold"
-                    onClick={() => window.open("")}
-                >View</button>
+            <div className="card_section thumbnail">
+                <div className="content">
+                    <img src="" />
+                    <h3>Design</h3>
+                </div>
+            </div>
+            <div className="card_section desc">
+                <div className="content">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cum cumque minus iste veritatis provident at.</p>
+                        <a href="#">Read More</a>
+                </div>
             </div>
         </div>
     )
