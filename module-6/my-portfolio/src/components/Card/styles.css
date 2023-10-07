@@ -1,69 +1,52 @@
 @import "../../App.css";
 
-.card{
+.card {
+    width: 400px;
+    max-width: 100%;
+    height: 300px;
+    border-radius: 12px;
+    overflow: hidden;
     position: relative;
-    cursor: pointer;
-	background-color: transparent;
+    color: hsl(var(--clr-lite));
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 300ms;
+  }
+  
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
-.card_section {
-    width: 350px;
-    height: 200px;
-	max-width: 100%;
-    transition: 0.5s;
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+  
+.card__content {
+    width: 100%;
+    position: absolute;
+    padding: 30px 20px 20px 20px;
+    height: auto;
+    bottom: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
+  }
+  
+.card__title,
+.card__desc {
+    margin: 0;
 }
 
-.thumbnail{
-    position: relative;
-    background: hsl(var(--clr-secondary));
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
-    transform: translateY(100px);
+.card__desc {
+    font-size: 12px;
+    margin-bottom: 4px;
 }
 
-.card:hover .thumbnail{
-    background: hsl(var(--clr-primary));
-    transform: translateY(0);
+.card__title {
+    font-size: 17px;
 }
 
-.thumbnail .content{
-    opacity: 0.2;
-    transition: 0.5s;
+.card__btn {
+    height: 40px;
 }
-
-.card:hover .thumbnail .content{
-    opacity: 1;
-}
-
-.content img {
-    max-width: 100px;
-}
-
-.thumbnail .content h3{
-    margin: 10px 0 0;
-    padding: 0;
-    color: #fff;
-    text-align: center;
-    font-size: 1.5em;
-}
-
-.desc{
-    position: relative;
-    background: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    box-sizing: border-box;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
-    transform: translateY(-100px);
-}
-
-.card:hover .desc{
-    transform: translateY(0);
-}
-
-
-
+  

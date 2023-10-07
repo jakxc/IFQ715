@@ -1,13 +1,16 @@
 @import "../../App.css";
 
 .profile-frame {
-    height: 400px;
-    width: 300px;
-    border: 1px solid hsl(var(--clr-primary));
-    border-radius: 20px;
-    overflow: hidden;
+    border: 2px solid hsl(var(--clr-primary))
 }
 
 .profile-img {
-    width: 100%;
+    width: 375px;
+    aspect-ratio: 3/4;
+    border: solid hsl(var(--clr-lite));
+    border-width: 6px 6px 20px 6px;
+    box-shadow:1px 1px 5px #333; 
+    -webkit-box-shadow:1px 1px 5px #333;
+    -moz-box-shadow:1px 1px 5px #333;
+    transform: rotate(-2deg);
 }
