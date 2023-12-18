@@ -11,7 +11,7 @@ const HighlightLink = (props) => {
     return <NavLink 
                 {...props}
                 style={({ isActive }) => ({
-                    color: isActive ? 'hsl(0, 52%, 43%)' : 'hsl(0, 0%, 89%)'
+                    color: isActive ? 'hsl(27, 88%, 64%)' : 'hsl(0, 0%, 89%)'
                 })}
             />
      
@@ -31,7 +31,7 @@ const Header = () => {
                         </span>
                     </Navbar.Toggle>
                     <Navbar.Collapse id="navbarSupportedContent" className="pt-2">
-                        <Nav className="gap-3 me-auto">
+                        <Nav className="gap-5 me-auto fs-5">
                             <div className="nav_link" title="Home">
                                 <HighlightLink to="/">
                                     Home

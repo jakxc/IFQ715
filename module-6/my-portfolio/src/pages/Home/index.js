@@ -13,11 +13,12 @@ const Home = () => {
                         I am a <span className="color-primary | fw-bold">
                         <Typewriter
                             options={{
-                                strings: ['Full Stack Web Developer', 'UX Designer', 'Front End Developer'],
+                                strings: ["Web Developer", "UX Designer", "Front End Developer"],
                                 autoStart: true,
                                 loop: true,
+                                cursorClassName: "typewriter-cursor"
                             }}
-                        /></span> with a keen interest in web development and UX Design.
+                        /></span> with a keen interest in game development and UX Design.
                     </h2>
                     <button type="button" className="btn-primary">Contact Me</button>
                 </Col>

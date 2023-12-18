@@ -1,8 +1,8 @@
 
 :root {
-  --clr-background: 180, 20%, 1%, 80%;
-  --clr-primary: 0, 52%, 43%; 
-  --clr-secondary: 188, 53%, 43%;
+  --clr-background: 180, 20%, 1%;
+  --clr-primary: 27, 88%, 64%; 
+  --clr-secondary: 172, 49%, 55%;
   --clr-lite: 0, 0%, 89%;
   --clr-dark: 0, 0%, 11%;
   
@@ -16,6 +16,7 @@ body {
 }
 
 a {
+  color: hsl(0, 5%, 32%);
   text-decoration: none;
 }
 
