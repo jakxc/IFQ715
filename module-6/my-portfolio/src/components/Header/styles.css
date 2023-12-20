@@ -1,12 +1,68 @@
 @import "../../App.css";
 
+.nav {
+    text-align: center;
+    font-weight: 600;
+}
+
+.nav * {
+    box-sizing: border-box;
+    transition: all .35s ease;
+}
+
+.nav a {
+    padding: .5em .8em;
+    color: hsl(var(--clr-lite));
+    position: relative;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.nav a::before,
+.nav a::after {
+    content: '';
+    height: 14px;
+    width: 14px;
+    position: absolute;
+    transition: all .35s ease;
+    opacity: 0;
+}
+
+.nav a::before {
+    content: '';
+    right: 0;
+    top: 0;
+    border-top: 3px solid hsl(var(--clr-primary));
+    border-right: 3px solid hsl(var(--clr-primary));
+    transform: translate(-100%, 50%);
+}
+
+.nav a:after {
+    content: '';
+    left: 0;
+    bottom: 0;
+    border-bottom: 3px solid hsl(var(--clr-primary));
+    border-left: 3px solid hsl(var(--clr-primary));
+    transform: translate(100%, -50%);
+}
+
+.nav a:hover:before,
+.nav a:hover:after{
+    transform: translate(0,0);
+    opacity: 1;
+}
+
+.nav a:hover {
+    color: hsl(var(--clr-primary)) !important;
+}
+/* 
 .nav_link {
     transition:  0.2s ease-in-out;
 } 
 
 .nav_link:hover {
     scale: 1.05;
-}
+} */
 
 .nav_toggle {
     border: none;

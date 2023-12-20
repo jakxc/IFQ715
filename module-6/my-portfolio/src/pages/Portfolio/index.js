@@ -10,7 +10,9 @@ const Portfolio = () => {
 
     const getProjects = async () => {
         const querySnapshot = await getDocs(collection(db, "portfolio"));
-        setProjects(querySnapshot.docs.map((doc) => doc.data()));
+        const docsData = querySnapshot.docs.map(el => el.data());
+
+        setProjects(docsData);
     }
 
     useEffect(() => {
@@ -22,10 +24,10 @@ const Portfolio = () => {
     }, []);
 
     const projectElements = projects.map((project, i) => {
-        return <Col>
+        return <Col md={4} className="my-2">
                     <ProjectCard 
                         key={i} 
-                        title={project["title"]} 
+                        title={project["name"]} 
                         desc={project["description"]}
                         image={project["image"]}
                         url={project["url"]}
@@ -35,7 +37,7 @@ const Portfolio = () => {
 
     return (
         <Container fluid="sm">
-            <Row className="gap-3">
+            <Row>
                 {loading ? <pre>Loading...</pre> : projectElements} 
             </Row>
         </Container>

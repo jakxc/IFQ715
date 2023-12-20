@@ -59,39 +59,37 @@ const Home = () => {
     }
 
     return (
-        <div className="dashboard">
-            <form onSubmit={submitPortfolio}>
-                <input 
-                    type="text" 
-                    placeholder="Name"
-                    name='name'
-                    value={formData.name} 
-                    onChange={handleChange}
-                />
-                <textarea 
-                    placeholder="Description"
-                    name='description'
-                    value={formData.description}
-                    onChange={handleChange}
-                />
-                <input 
-                    type="text" 
-                    placeholder="Url" 
-                    name='url'
-                    value={formData.url}
-                    onChange={handleChange}
-                />
-                <input 
-                    type="file" 
-                    placeholder="Image" 
-                    name='image'
-                    files={formData.image}
-                    onChange={handleChange}
-                />
-                <button type="submit">Submit</button>
-                <button onClick={() => auth.signOut()}>Sign out</button>
-            </form>
-        </div>
+        <form onSubmit={submitPortfolio} className="dashboard">
+            <input 
+                type="text" 
+                placeholder="Name"
+                name='name'
+                value={formData.name} 
+                onChange={handleChange}
+            />
+            <textarea 
+                placeholder="Description"
+                name='description'
+                value={formData.description}
+                onChange={handleChange}
+            />
+            <input 
+                type="text" 
+                placeholder="Url" 
+                name='url'
+                value={formData.url}
+                onChange={handleChange}
+            />
+            <input 
+                type="file" 
+                placeholder="Image" 
+                name='image'
+                files={formData.image}
+                onChange={handleChange}
+            />
+            <button type="submit">Submit</button>
+            <button onClick={() => auth.signOut()}>Sign out</button>
+        </form>
     )
 }
 

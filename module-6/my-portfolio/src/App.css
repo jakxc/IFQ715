@@ -127,3 +127,16 @@ a {
 .background-primary {
   background-color: hsl(var(--clr-primary));
 }
+
+/* For ease of personal use only */
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.dashboard input, .dashboard textarea, .dashboard button {
+  border: 1px solid white;
+  padding: 3px;
+}
