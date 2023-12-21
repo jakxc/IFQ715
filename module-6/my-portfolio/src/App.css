@@ -16,7 +16,7 @@ body {
 }
 
 a {
-  color: hsl(0, 5%, 32%);
+  color: hsl(var(--clr-lite));
   text-decoration: none;
 }
 

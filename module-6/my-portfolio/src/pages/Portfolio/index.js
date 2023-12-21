@@ -36,7 +36,8 @@ const Portfolio = () => {
     })
 
     return (
-        <Container fluid="sm">
+        <Container fluid="sm" className="mt-5 py-5">
+            <h1 className="mb-4">Projects</h1>
             <Row>
                 {loading ? <pre>Loading...</pre> : projectElements} 
             </Row>

@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { useRef } from 'react'
+import { useState, useRef } from 'react'
+import { Container, Row, Col } from 'react-bootstrap'
 import emailjs from '@emailjs/browser'
 
 const Contact = () => {
@@ -46,47 +46,52 @@ const Contact = () => {
     }
 
     return (
-        <div className="container">
-            <p>
-                I am interested in any and all front end development opportunities. Feel free to 
-                contact me below if you have any enquries or just want to get in touch!
-            </p>
-            <div className="contact-form">
-                <form ref={form} onSubmit={handleSubmit}>
-                    <input 
-                        placeholder="First Name" 
-                        type="text" 
-                        name="firstName" 
-                        value={formData.firstName}
-                        onChange={handleChange}
-                        required 
+        <Container fluid="sm" className="mt-5 py-5">
+            <h1 className="mb-4">Projects</h1>
+            <form ref={form} onSubmit={handleSubmit}>
+                <Row>
+                    <Col md={6}>
+                        <input 
+                            placeholder="First Name" 
+                            type="text" 
+                            name="firstName" 
+                            value={formData.firstName}
+                            onChange={handleChange}
+                            required 
+                        />
+                    </Col>
+                    <Col md={6}>
+                        <input
+                            placeholder="Last Name"
+                            type="text"
+                            name="lastName"
+                            value={formData.lastName}
+                            onChange={handleChange}
                     />
-                    <input
-                        placeholder="Last Name"
-                        type="text"
-                        name="lastName"
-                        value={formData.lastName}
-                        onChange={handleChange}
-                    />
-                    <input
-                        placeholder="Email"
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                    />
-                    <textarea
-                        placeholder="Message or Comments"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        required
-                    ></textarea>
+                    </Col>
+                    <Col md={12}>
+                        <input
+                            placeholder="Email"
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            required
+                        />
+                    </Col>
+                    <Col md={12}>
+                        <textarea
+                            placeholder="Message or Comments"
+                            name="message"
+                            value={formData.message}
+                            onChange={handleChange}
+                            required
+                        ></textarea>
+                    </Col>
                     <input type="submit" className="form-button" value="SEND" />
-                </form>
-            </div>
-        </div>
+                </Row>
+            </form>
+        </Container>
     )
 }
 
