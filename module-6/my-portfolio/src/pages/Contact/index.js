@@ -1,45 +1,38 @@
-import { useState, useRef } from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
-import emailjs from '@emailjs/browser'
+import { useState } from "react"
+import { Container, Row, Col } from "react-bootstrap"
+import emailjs from "@emailjs/browser"
+import TextField from "../../components/TextField"
 
 const Contact = () => {
-    const initialFormData = {
-        firstName: '',
-        lastName: '',
-        email: '',
-        message: ''
-    }
-
-    const [formData, setFormData] = useState(initialFormData)
-
-    const form = useRef();
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-
-        setFormData(prev => {
-            return {
-                ...prev,
-                [name]: value
-            }
-        })
-    }
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [message, setMessage] = useState("");
 
     const handleSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
         emailjs
-        .sendForm(
+        .send(
             process.env.REACT_APP_EMAIL_SERVICE_ID, 
             process.env.REACT_APP_EMAIL_TEMPLATE_ID, 
-            form.current, 
+            {
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                message: message
+            },
             process.env.REACT_APP_EMAIL_USER_ID)
         .then(
-            () => {
-                alert('Message successfully sent!')
-                setFormData(initialFormData);
+            (res) => {
+                console.log(res);
+                setFirstName("");
+                setLastName("");
+                setEmail("");
+                setMessage("");
             },
-            () => {
+            (err) => {
+                console.log(err)
                 alert('Failed to send the message, please try again')
             }
         )
@@ -47,48 +40,50 @@ const Contact = () => {
 
     return (
         <Container fluid="sm" className="mt-5 py-5">
-            <h1 className="mb-4">Projects</h1>
-            <form ref={form} onSubmit={handleSubmit}>
+            <h1 className="mb-4">Contact Me</h1>
+            <form onSubmit={handleSubmit}>
                 <Row>
-                    <Col md={6}>
-                        <input 
+                    <Col md={4} className="mb-3">
+                        <TextField 
+                            value={firstName}
                             placeholder="First Name" 
                             type="text" 
-                            name="firstName" 
-                            value={formData.firstName}
-                            onChange={handleChange}
-                            required 
+                            label="First Name" 
+                            onInputChanged={setFirstName}
+                            isRequired={true}
                         />
                     </Col>
-                    <Col md={6}>
-                        <input
-                            placeholder="Last Name"
-                            type="text"
-                            name="lastName"
-                            value={formData.lastName}
-                            onChange={handleChange}
-                    />
-                    </Col>
-                    <Col md={12}>
-                        <input
-                            placeholder="Email"
-                            type="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            required
+                    <Col md={4} className="mb-3">
+                        <TextField 
+                            value={lastName}
+                            placeholder="Last Name" 
+                            type="text" 
+                            label="Last Name" 
+                            onInputChanged={setLastName}
+                            isRequired={false}
                         />
                     </Col>
-                    <Col md={12}>
-                        <textarea
-                            placeholder="Message or Comments"
-                            name="message"
-                            value={formData.message}
-                            onChange={handleChange}
-                            required
-                        ></textarea>
+                    <Col md={8} className="mb-3">
+                        <TextField 
+                            value={email}
+                            placeholder="Email" 
+                            type="email" 
+                            label="Email" 
+                            onInputChanged={setEmail}
+                            isRequired={true}
+                        />
                     </Col>
-                    <input type="submit" className="form-button" value="SEND" />
+                    <Col md={8} className="mb-5">
+                        <TextField 
+                            value={message}
+                            placeholder="Message" 
+                            type="text" 
+                            label="Message" 
+                            onInputChanged={setMessage}
+                            isRequired={true}
+                        />
+                    </Col>
+                    <Col md={12}><button type="button" className="btn-primary" onClick={handleSubmit}>Send</button></Col>
                 </Row>
             </form>
         </Container>
