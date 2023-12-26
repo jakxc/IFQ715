@@ -2,6 +2,8 @@ import { useState } from "react"
 import { Container, Row, Col } from "react-bootstrap"
 import emailjs from "@emailjs/browser"
 import TextField from "../../components/TextField"
+import Modal from "../../components/Modal"
+import loadingGif from "../../assets/bouncing-ball.gif"
 
 const Contact = () => {
     const [firstName, setFirstName] = useState("");
@@ -9,9 +11,11 @@ const Contact = () => {
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
 
+    const [loading, setLoading] = useState(false);
+
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        setLoading(true);
         emailjs
         .send(
             process.env.REACT_APP_EMAIL_SERVICE_ID, 
@@ -36,10 +40,12 @@ const Contact = () => {
                 alert('Failed to send the message, please try again')
             }
         )
+        .finally(() => setLoading(false))
     }
 
     return (
         <Container fluid="sm" className="mt-5 py-5">
+            {loading && <Modal content={<img src={loadingGif} />} text="Loading..."/>}
             <h1 className="mb-4">Contact Me</h1>
             <form onSubmit={handleSubmit}>
                 <Row>
